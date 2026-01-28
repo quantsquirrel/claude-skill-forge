@@ -1,6 +1,6 @@
 ---
 name: skill-forge:forge
-description: TDD 기반 스킬 자동 업그레이드. 복수 평가 + 신뢰구간으로 유의미한 향상 검증.
+description: Use when you want to systematically upgrade a skill's quality through TDD-based evaluation. 복수 평가 + 신뢰구간으로 유의미한 향상 검증.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, Skill
 user-invocable: true
 ---
@@ -17,11 +17,49 @@ Systematically improve a skill through test-driven evaluation and statistical va
 |------|--------|
 | 1 | Trial Branch 생성 |
 | 2 | 스킬 찾기 및 읽기 |
-| 3 | 기준선 평가 (3회) - evaluator 사용 |
-| 4 | 개선 적용 |
-| 5 | 개선 후 평가 (3회) |
-| 6 | 신뢰구간 분리 확인 |
-| 7 | 성공 시 병합 / 실패 시 폐기 |
+| 3 | Pressure Scenario 생성 |
+| 4 | 기준선 평가 (3회) - evaluator 사용 |
+| 5 | Discoverability 평가 (CSO 체크) |
+| 6 | 개선 사항 식별 |
+| 7 | 개선 적용 (GREEN Phase) |
+| 8 | 개선 후 평가 (3회) |
+| 9 | 신뢰구간 분리 확인 |
+| 10 | Trial Branch 결과 처리 (병합/폐기) |
+| 11 | Stats 업데이트 (upgraded: true) |
+
+## When to Use
+
+Use this skill when:
+- A skill has low discoverability or unclear instructions
+- You want to improve skill quality with measurable metrics
+- You need to upgrade a skill with verified improvements (confidence interval separation)
+
+Do NOT use when:
+- The skill doesn't exist yet (create it first)
+- Quick one-off fixes are needed (just edit directly)
+
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `skill-name` | Yes | The skill to upgrade (e.g., `superpowers:tdd`, `skill-forge:visualize`) |
+| `--iterations N` | No | Maximum upgrade iterations (default: 6) |
+| `--dry-run` | No | Evaluate only, don't apply changes |
+
+Example: `/skill-forge:forge superpowers:tdd --iterations 3`
+
+## Prerequisites
+
+Before using this skill, ensure:
+
+1. **Required files exist**:
+   - `~/.claude/plugins/local/skill-forge/hooks/lib/statistics.sh`
+   - `~/.claude/plugins/local/skill-forge/hooks/lib/trial-branch.sh`
+   - `skill-forge:evaluator` subskill
+
+2. **Git initialized** in target directory (for Trial Branch)
+
+3. **First-time setup**: Invoke `skill-forge:writing-skills` once to understand TDD methodology
 
 ## Workflow
 
