@@ -395,20 +395,29 @@ architect
 ## 자체 개선 이력
 
 ```
-v0.5: 초기 구현 (점수: TBD)
+v0.5: 초기 구현 (점수: N/A)
       - TDD-Fit 판별 (5포인트 체크리스트)
       - Trial Branch 전략
       - 기본 평가 메커니즘
 
-v0.6: Synod 검증 반영 (점수: TBD)
-      - 평가 에이전트 분리
+v0.6: Synod 검증 반영 (기준선: 71점)
+      - 평가 에이전트 분리 (evaluator.md)
       - 3회 복수 평가 + 신뢰구간
-      - 원본 보호 강화
+      - Lazy Detection (Write/Edit만)
+      - Trial Branch 자동화 (trial-branch.sh)
+      - 통계 계산 (statistics.sh)
 
-v0.7 ~ v1.0: TBD
-      - 성능 최적화
-      - 휴리스틱 개선
-      - 프로덕션 안정화
+v0.7: 부트스트래핑 1회차 (점수: 90.33점, +19.33)
+      - CSO 준수: Description "Use when..." 패턴
+      - Quick Reference-Workflow 11단계 동기화
+      - "When to Use" 섹션 추가
+      - "Arguments" 섹션 추가
+      - "Prerequisites" 섹션 추가
+      ⚠️ CI 분리: 미달 (82.34 < 91.34), 평균 향상으로 병합
+
+v0.8 ~ v1.0: 예정
+      - 추가 부트스트래핑 (필요시)
+      - GitHub 오픈소스 출시
 ```
 
 ---
@@ -425,5 +434,5 @@ v0.7 ~ v1.0: TBD
 *Inspired by [skill-up](https://github.com/BumgeunSong/skill-up)*
 
 **Maintained by:** Claude Code
-**Last Updated:** 2025-01-28
+**Last Updated:** 2026-01-29
 **License:** MIT

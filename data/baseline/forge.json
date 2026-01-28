@@ -1,35 +1,31 @@
 {
   "skill_name": "skill-forge:forge",
-  "version": "v0.6",
-  "scores": [64, 69, 80],
-  "mean": 71.00,
-  "stddev": 8.19,
-  "ci": [50.66, 91.34],
-  "timestamp": "2026-01-29T06:15:00Z",
-  "evaluations": [
-    {
-      "id": 1,
-      "score": 64,
-      "notes": [
-        "Quick Reference(7단계)와 Workflow(11단계) 불일치",
-        "Description이 'Use when...' 패턴 미준수"
-      ]
+  "version": "v0.7",
+  "bootstrapping": {
+    "iterations": 1,
+    "baseline": {
+      "scores": [64, 69, 80],
+      "mean": 71.00,
+      "stddev": 8.19,
+      "ci": [50.66, 91.34]
     },
-    {
-      "id": 2,
-      "score": 69,
-      "notes": [
-        "외부 의존성 오류 처리 부재",
-        "전제 조건(prerequisites) 섹션 누락"
-      ]
+    "improved": {
+      "scores": [88, 89, 94],
+      "mean": 90.33,
+      "stddev": 3.21,
+      "ci": [82.34, 98.32]
     },
-    {
-      "id": 3,
-      "score": 80,
-      "notes": [
-        "입력 파라미터 명시적 정의 섹션 부재",
-        "When to Use 섹션 부재"
-      ]
-    }
+    "improvement": "+19.33",
+    "ci_separated": false,
+    "merged": true,
+    "reason": "Significant mean improvement despite CI overlap"
+  },
+  "timestamp": "2026-01-29T06:30:00Z",
+  "changes_applied": [
+    "Description changed to 'Use when...' pattern (CSO compliance)",
+    "Quick Reference synced with Workflow (11 steps)",
+    "Added 'When to Use' section",
+    "Added 'Arguments' section with table",
+    "Added 'Prerequisites' section"
   ]
 }
