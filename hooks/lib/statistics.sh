@@ -93,6 +93,47 @@ calc_ci() {
 }
 
 # ------------------------------------------------------------------------------
+# 샘플 사이즈 헬퍼 함수 (신규 추가)
+# ------------------------------------------------------------------------------
+
+# 권장 샘플 사이즈 반환
+# Usage: get_recommended_sample_size [precision_level]
+# precision_level: "standard" (n=3) | "high" (n=5)
+# Output: integer
+get_recommended_sample_size() {
+    local precision="${1:-standard}"
+
+    case "$precision" in
+        high|precise|5)
+            echo 5
+            ;;
+        standard|normal|3|*)
+            echo 3
+            ;;
+    esac
+}
+
+# 샘플 사이즈별 신뢰구간 폭 예상 (검정력 안내용)
+# Usage: estimate_ci_width stddev sample_size
+# Output: estimated CI width
+estimate_ci_width() {
+    local stddev=$1
+    local n=$2
+
+    local t_value
+    case $n in
+        3) t_value=4.303 ;;
+        5) t_value=2.776 ;;
+        *) t_value=2.0 ;;
+    esac
+
+    local se=$(echo "scale=4; $stddev / sqrt($n)" | bc -l)
+    local width=$(echo "scale=2; 2 * $t_value * $se" | bc -l)
+
+    echo "$width"
+}
+
+# ------------------------------------------------------------------------------
 # 신뢰구간 분리 판단 (CI Separation Check)
 # ------------------------------------------------------------------------------
 # Usage: ci_separated prev_ci_upper curr_ci_lower

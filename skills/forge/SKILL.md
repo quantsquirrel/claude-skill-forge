@@ -27,6 +27,61 @@ Systematically improve a skill through test-driven evaluation and statistical va
 | 10 | Trial Branch 결과 처리 (병합/폐기) |
 | 11 | Stats 업데이트 (upgraded: true) |
 
+## Upgrade Mode Selection
+
+스킬 업그레이드 시작 전, 적합한 모드를 자동 선택합니다.
+
+### Mode Decision Flow
+
+```
+스킬 분석 (get_upgrade_mode 호출)
+    │
+    ├─ "TDD_FIT" ──→ TDD Mode (기존 워크플로우)
+    │                 - Trial Branch
+    │                 - 3x 평가 + 95% CI (또는 n=5 고정밀)
+    │                 - 통계적 검증
+    │
+    └─ "HEURISTIC" ──→ Heuristic Mode (신규)
+                       - Usage 데이터 분석
+                       - 구조 품질 평가
+                       - 자동 개선 제안
+```
+
+### Mode Detection
+
+업그레이드 시작 시 다음 bash 함수를 호출하여 모드 결정:
+```bash
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/storage-local.sh"
+MODE=$(get_upgrade_mode "$skill_name")
+```
+
+### TDD Mode Options
+
+| Option | Sample Size | CI Width | When to Use |
+|--------|-------------|----------|-------------|
+| Standard | n=3 | Wider | 빠른 피드백, 대부분의 경우 |
+| High Precision | n=5 | Narrower | 미묘한 개선 검증, 중요한 스킬 |
+
+사용자가 `/forge --precision=high` 또는 `/forge -n5`로 n=5 모드 선택 가능
+
+### TDD Mode (기존)
+- **조건:** 테스트 파일 또는 pressure-scenarios.md 존재
+- **검증:** `check_skill_has_test()` → true
+- **워크플로우:** Step 1-11 (기존 그대로)
+
+### Heuristic Mode (신규)
+- **조건:** 테스트 파일 없음
+- **검증:** `get_upgrade_mode()` → "HEURISTIC"
+- **워크플로우:**
+  1. Usage 데이터 로드 (`get_all_skills_summary()`)
+  2. 서브에이전트 호출: `Task(subagent_type="skill-forge:heuristic-evaluator", prompt="Evaluate skill: <skill-name>")`
+  3. 점수 60 미만 → 자동 개선 제안 적용
+  4. Trial Branch에서 개선 적용
+  5. 1주일 후 사용량 변화로 검증 (`get_usage_trend()`)
+
+### Hybrid Fallback
+TDD Mode에서 신뢰구간 분리 실패 시 → Heuristic Mode로 전환 옵션 제공
+
 ## When to Use
 
 Use this skill when:

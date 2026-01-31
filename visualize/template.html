@@ -418,6 +418,62 @@ body {
   font-size: 12px;
 }
 
+/* Enhanced Grade Colors */
+.grade-sss {
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  font-weight: bold;
+}
+.grade-ss { color: #9B59B6; font-weight: bold; }
+.grade-s { color: #3498DB; font-weight: bold; }
+.grade-a { color: #2ECC71; }
+.grade-b { color: #F1C40F; }
+.grade-c { color: #E67E22; }
+.grade-d { color: #E74C3C; }
+.grade-f { color: #95A5A6; }
+
+/* Trend Indicators */
+.trend-indicator {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+}
+.trend-positive { color: #2ECC71; }
+.trend-negative { color: #E74C3C; }
+.trend-stable { color: #95A5A6; }
+
+/* Modifier Badges */
+.modifier-badges {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+.modifier-badge {
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.badge-upgraded { background: #9B59B6; color: white; }
+.badge-efficient { background: #2ECC71; color: white; }
+.badge-trending { background: #3498DB; color: white; }
+.badge-tested { background: #F39C12; color: white; }
+
+/* SSS Text Glow Animation */
+@keyframes sss-text-glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); }
+}
+.grade-sss {
+  animation: sss-text-glow 2s ease-in-out infinite;
+}
+
 .toast {
   position: fixed;
   bottom: 24px;
@@ -999,12 +1055,37 @@ function renderInventory() {
       const scopes = skill.scopes || {};
       const cardId = `skill-${cat}-${idx}`;
       const tooltipIconId = `tooltip-icon-${cat}-${idx}`;
+
+      // Trend indicator
+      const trendMap = {
+        'positive': { symbol: '\u25B2', class: 'trend-positive' },
+        'negative': { symbol: '\u25BC', class: 'trend-negative' },
+        'stable': { symbol: '\u2500', class: 'trend-stable' }
+      };
+      const trend = skill.trend && trendMap[skill.trend]
+        ? `<span class="trend-indicator ${trendMap[skill.trend].class}">${trendMap[skill.trend].symbol}</span>`
+        : '';
+
+      // Modifier badges
+      const modifierMap = {
+        'upgraded': { symbol: '\u2191', class: 'badge-upgraded' },
+        'efficient': { symbol: '\u26A1', class: 'badge-efficient' },
+        'trending': { symbol: '\u{1F4C8}', class: 'badge-trending' },
+        'tested': { symbol: '\u2713', class: 'badge-tested' }
+      };
+      const modifiers = skill.modifiers && skill.modifiers.length > 0
+        ? `<div class="modifier-badges">${skill.modifiers.map(m =>
+            modifierMap[m] ? `<span class="modifier-badge ${modifierMap[m].class}">${modifierMap[m].symbol}</span>` : ''
+          ).join('')}</div>`
+        : '';
+
       return `
       <div class="skill-card" data-grade="${skill.grade}" id="${cardId}">
         <span class="skill-grade-badge">${skill.grade}</span>
+        ${trend}
         ${skill.upgraded ? '<span class="upgraded-badge">\u2728</span>' : ''}
         <div class="skill-icon"><canvas data-icon="${skill.iconKey || ''}" data-color="${getGradeColor(skill.grade)}"></canvas></div>
-        <div class="skill-name">${skill.name}</div>
+        <div class="skill-name">${skill.name}${modifiers}</div>
         <div class="tooltip" style="border-top: 2px solid ${getGradeColor(skill.grade)}">
           <div class="tooltip-header">
             <div class="skill-icon"><canvas id="${tooltipIconId}" data-icon="${skill.iconKey || ''}" data-color="${getGradeColor(skill.grade)}"></canvas></div>
