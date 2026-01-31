@@ -121,25 +121,31 @@ flowchart TD
 #### 3️⃣ Trial Branch Strategy
 
 ```mermaid
-flowchart LR
-    subgraph main[" main branch "]
-        M1[("●")] --> M2[("●")]
+flowchart TB
+    subgraph MAIN["🏠 main"]
+        direction LR
+        C1["v0.6<br/>score: 71"] -.-> C2["v0.7<br/>score: 90"]
     end
 
-    subgraph trial[" trial/skill-name "]
-        T1["improve"] --> T2["evaluate"]
+    subgraph TRIAL["🧪 trial/skill-name"]
+        direction LR
+        T1["1. Improve"] --> T2["2. Evaluate<br/>(×3 rounds)"]
+        T2 --> T3{"CI check"}
     end
 
-    M1 -.->|branch| T1
-    T2 ==>|"✅ merge<br/>(on success)"| M2
+    C1 -->|"git checkout -b"| T1
+    T3 -->|"✅ CI_lower > CI_upper"| C2
+    T3 -->|"❌ No improvement"| D["🗑️ Discard"]
 
-    style M1 fill:#4a5568,stroke:#2d3748,color:#fff
-    style M2 fill:#48bb78,stroke:#2f855a,color:#fff
-    style T1 fill:#4299e1,stroke:#2b6cb0,color:#fff
-    style T2 fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style C1 fill:#6b7280,stroke:#374151,color:#fff
+    style C2 fill:#10b981,stroke:#059669,color:#fff
+    style T1 fill:#3b82f6,stroke:#1d4ed8,color:#fff
+    style T2 fill:#3b82f6,stroke:#1d4ed8,color:#fff
+    style T3 fill:#f59e0b,stroke:#d97706,color:#fff
+    style D fill:#ef4444,stroke:#b91c1c,color:#fff
 ```
 
-> On failure, trial branch is discarded without merging.
+**Key insight**: Only statistically significant improvements are merged.
 
 ### Implementation Details
 

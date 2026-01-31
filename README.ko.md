@@ -121,25 +121,31 @@ flowchart TD
 #### 3️⃣ Trial Branch 전략
 
 ```mermaid
-flowchart LR
-    subgraph main[" main 브랜치 "]
-        M1[("●")] --> M2[("●")]
+flowchart TB
+    subgraph MAIN["🏠 main"]
+        direction LR
+        C1["v0.6<br/>점수: 71"] -.-> C2["v0.7<br/>점수: 90"]
     end
 
-    subgraph trial[" trial/skill-name "]
-        T1["개선"] --> T2["평가"]
+    subgraph TRIAL["🧪 trial/skill-name"]
+        direction LR
+        T1["1. 개선"] --> T2["2. 평가<br/>(×3회)"]
+        T2 --> T3{"CI 검사"}
     end
 
-    M1 -.->|분기| T1
-    T2 ==>|"✅ 병합<br/>(성공 시)"| M2
+    C1 -->|"git checkout -b"| T1
+    T3 -->|"✅ CI_lower > CI_upper"| C2
+    T3 -->|"❌ 개선 없음"| D["🗑️ 폐기"]
 
-    style M1 fill:#4a5568,stroke:#2d3748,color:#fff
-    style M2 fill:#48bb78,stroke:#2f855a,color:#fff
-    style T1 fill:#4299e1,stroke:#2b6cb0,color:#fff
-    style T2 fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style C1 fill:#6b7280,stroke:#374151,color:#fff
+    style C2 fill:#10b981,stroke:#059669,color:#fff
+    style T1 fill:#3b82f6,stroke:#1d4ed8,color:#fff
+    style T2 fill:#3b82f6,stroke:#1d4ed8,color:#fff
+    style T3 fill:#f59e0b,stroke:#d97706,color:#fff
+    style D fill:#ef4444,stroke:#b91c1c,color:#fff
 ```
 
-> 실패 시 trial 브랜치는 병합 없이 폐기됩니다.
+**핵심 통찰**: 통계적으로 유의미한 개선만 병합됩니다.
 
 ### 구현 세부사항
 
