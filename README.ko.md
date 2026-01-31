@@ -2,17 +2,19 @@
 
 <div align="center">
 
+<img src="docs/assets/forge.jpeg" alt="Skill Forge" width="600"/>
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=42&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=skill-forge">
-  <img alt="skill-forge" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=42&duration=3000&pause=1000&color=0D1117&center=true&vCenter=true&width=500&lines=skill-forge">
+  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=42&duration=3000&pause=1000&color=FFD700&center=true&vCenter=true&width=500&lines=skill-forge">
+  <img alt="skill-forge" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=42&duration=3000&pause=1000&color=FF6B00&center=true&vCenter=true&width=500&lines=skill-forge">
 </picture>
 
-### ⟨ TDD 진화 엔진 ⟩
+### ⚔️ 스킬을 전설의 무기로 단조하세요
 
-[![Version](https://img.shields.io/badge/v1.0-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
-[![Tests](https://img.shields.io/badge/tests-passing-38BDF8?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
-[![License](https://img.shields.io/badge/MIT-E2E8F0?style=flat-square)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=38BDF8)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v1.0-FFB800?style=flat-square&logoColor=1A0A00)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Tests](https://img.shields.io/badge/tests-passing-FF6B00?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
+[![License](https://img.shields.io/badge/MIT-FFD700?style=flat-square)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=FF6B00)](https://github.com/quantsquirrel/claude-skill-forge)
 
 **TDD 기반 Claude Code 스킬 자동 진화 엔진**
 
@@ -20,38 +22,44 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 💎 흐름
+## 🔥 단조 과정
+
+모든 전설의 무기는 원석에서 시작합니다. 가열, 타격, 담금질을 거쳐 평범한 금속이 비범한 무기로 탄생합니다.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8',
-  'secondaryColor': '#0D1117',
-  'tertiaryColor': '#0D1117'
+  'primaryColor': '#2D1810',
+  'primaryTextColor': '#FFD700',
+  'primaryBorderColor': '#FF6B00',
+  'lineColor': '#FFB800',
+  'secondaryColor': '#1A0A00',
+  'tertiaryColor': '#1A0A00'
 }}}%%
 graph LR
-    A["🔴 테스트"] -->|분석| B["🔍 스캔"]
-    B -->|진화| C["⚡ 진화"]
-    C -->|검증| D["💎 결정"]
+    A["⚙️ 원석<br/>스킬"] -->|"🔥 가열"| B["🔍 분석<br/>구조"]
+    B -->|"🔨 타격"| C["⚡ 진화<br/>개선"]
+    C -->|"💧 담금질"| D["✅ 검증<br/>테스트"]
+    D -->|"⚔️"| E["✨ 전설"]
 
-    style A fill:#0D1117,stroke:#FB7185,stroke-width:2px,color:#FB7185
-    style B fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style C fill:#1E293B,stroke:#A3E635,stroke-width:2px,color:#A3E635
-    style D fill:#38BDF8,stroke:#38BDF8,color:#0D1117
+    style A fill:#2D1810,stroke:#A0A0A0,stroke-width:2px,color:#A0A0A0
+    style B fill:#1A0A00,stroke:#FF6B00,stroke-width:3px,color:#FFB800
+    style C fill:#1A0A00,stroke:#FFB800,stroke-width:3px,color:#FFD700
+    style D fill:#2D1810,stroke:#FF6B00,stroke-width:2px,color:#FFD700
+    style E fill:#FFD700,stroke:#FFD700,color:#1A0A00,stroke-width:4px
 ```
+
+**대장간은 멈추지 않습니다** — 각 스킬은 분석의 불로 가열되고, 개선의 망치로 두들겨지며, 테스트의 담금질을 거쳐 더 강하게 태어납니다.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## ⚡ 빠른 시작
 
 ```bash
-# 설치
+# 대장간 설치
 git clone https://github.com/quantsquirrel/claude-skill-forge.git \
   ~/.claude/plugins/local/skill-forge
 
-# 실행
+# 불꽃 점화
 /skill-forge:forge --scan
 ```
 
@@ -59,32 +67,28 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 
 ## 💎 기능
 
-| 💎 투명한 검증 | ⚡ 자동 진화 |
-|:---:|:---:|
-| 모든 변경은 테스트로 검증 | 3회 평가 + 95% CI 자동 머지 |
+| 🔨 불에 단조됨 | ⚡ 자동 진화 | 🛡️ 안전한 시험 | 📊 삼중 타격 |
+|:---:|:---:|:---:|:---:|
+| 모든 변경 테스트됨 | 3회 평가 합의 | 원본 보존 | 95% CI 검증 |
 
-| 🔄 안전한 롤백 | 📊 통계 |
-|:---:|:---:|
-| 실패 시 원본 보존 | 실시간 점수 추적 |
+### 🔀 이중 단조 경로 (v1.0)
 
-### 🔀 하이브리드 업그레이드 모드 (v1.0)
+재료의 품질에 따라 두 가지 방식으로 스킬을 단조할 수 있습니다:
 
-이제 두 가지 경로로 스킬을 업그레이드할 수 있습니다:
-
-| 모드 | 조건 | 방법 |
+| 경로 | 조건 | 기법 |
 |------|------|------|
-| **TDD 모드** | 테스트 파일 존재 | 통계적 검증 (95% CI) |
-| **휴리스틱 모드** | 테스트 없음 | 사용량 패턴 + 구조 분석 |
+| **⚔️ TDD 단조** | 테스트 파일 존재 | 통계적 검증 (95% CI) |
+| **🔥 패턴 단조** | 테스트 없음 | 사용 패턴 + 휴리스틱 분석 |
 
 ```bash
-# 업그레이드 모드 확인
+# 단조 방식 확인
 source hooks/lib/storage-local.sh
 get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
 ```
 
-### 📊 스킬 모니터 (v1.0)
+### 📊 대장간 모니터 (v1.0)
 
-스킬 사용량을 추적하고 업그레이드 추천을 받으세요:
+무기들을 추적하고 재단조가 필요한 것을 확인하세요:
 
 ```
 /monitor
@@ -93,260 +97,170 @@ get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
 출력 예시:
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║                    Skill Forge Monitor                        ║
+║                    🔥 대장간 모니터                           ║
 ╠══════════════════════════════════════════════════════════════╣
-║ Skill                │ Usage │ Trend   │ Mode       │ Pri    ║
-╠══════════════════════╪═══════╪═════════╪════════════╪════════╣
-║ skill-forge:forge    │    45 │ ▲ +20%  │ TDD_FIT    │ MED    ║
+║ 무기                 │ 타격수  │ 열기   │ 방식       │ 등급  ║
+╠══════════════════════╪═════════╪════════╪════════════╪═══════╣
+║ skill-forge:forge    │    45   │ ▲ +20% │ TDD_FIT    │ MED   ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-### 🎖️ 강화된 등급 시스템 (v1.0)
+### 🎖️ 전설 등급 (v1.0)
 
-새로운 등급 Modifier와 SSS 티어:
+뛰어난 무기는 특별한 표식을 획득합니다:
 
-| Modifier | 보너스 | 조건 |
-|----------|--------|------|
-| 업그레이드됨 | +1 | `upgraded: true` |
+| 강화 | 보너스 | 단조 조건 |
+|------|--------|----------|
+| 재단조됨 | +1 | `upgraded: true` |
 | 효율적 | +0.5 | 토큰/사용량 < 1500 |
-| 상승 트렌드 | +0.5 | positive 트렌드 |
-| 테스트됨 | +0.5 | 테스트 파일 존재 |
+| 상승세 | +0.5 | 긍정적 트렌드 |
+| 검증됨 | +0.5 | 테스트 파일 존재 |
 
-**S + Upgraded + Efficient = SSS** ★★★
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-## 🔍 TDD 적합성 평가
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8',
-  'secondaryColor': '#0D1117',
-  'tertiaryColor': '#0D1117'
-}}}%%
-flowchart TB
-    subgraph CHECK["🔍 TDD 적합성 체크리스트"]
-        direction TB
-        Q1["☑️ 테스트 있음?"]
-        Q2["☑️ 재현 가능?"]
-        Q3["☑️ 목표 명확?"]
-        Q4["☑️ 깨지지 않음?"]
-        Q5["☑️ 충분히 작음?"]
-    end
-
-    CHECK --> RESULT{통과?}
-    RESULT -->|"✅"| READY["💎 준비됨"]
-    RESULT -->|"❌"| SKIP["⏭️ 건너뜀"]
-
-    style Q1 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style Q2 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style Q3 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style Q4 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style Q5 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style READY fill:#A3E635,stroke:#A3E635,color:#0D1117
-    style SKIP fill:#1E293B,stroke:#FB7185,stroke-width:2px,color:#FB7185
-```
+**S + 재단조됨 + 효율적 = ★★★ SSS 전설**
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## ⚡ 시험 브랜치 전략
+## 🛡️ 시험 브랜치 — 안전한 모루
+
+숙련된 대장장이는 결코 걸작에 직접 작업하지 않습니다. 먼저 시험 조각으로 테스트합니다.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8',
-  'secondaryColor': '#0D1117',
-  'tertiaryColor': '#0D1117'
+  'primaryColor': '#2D1810',
+  'primaryTextColor': '#FFD700',
+  'primaryBorderColor': '#FF6B00',
+  'lineColor': '#FFB800',
+  'secondaryColor': '#1A0A00',
+  'tertiaryColor': '#1A0A00'
 }}}%%
 flowchart TB
-    subgraph MAIN["main"]
+    subgraph MAIN["⚔️ main (마스터 무기)"]
         direction LR
         C1["v0.6<br/>71점"]
         C2["v0.7<br/>90점"]
         C1 -.-> C2
     end
 
-    subgraph TRIAL["trial/skill-name"]
+    subgraph TRIAL["🔥 trial/skill-name (시험 모루)"]
         direction LR
-        T1["개선"]
-        T2["평가<br/>×3"]
-        T3{"CI?"}
-        T1 --> T2 --> T3
+        T1["🔨 타격"]
+        T2["🔨 타격"]
+        T3["🔨 타격"]
+        T4{"가치 있나?"}
+        T1 --> T2 --> T3 --> T4
     end
 
-    C1 -->|브랜치| T1
-    T3 -->|"✅"| C2
-    T3 -->|"❌"| D["폐기"]
+    C1 -->|"분기"| T1
+    T4 -->|"✅ 더 강함"| C2
+    T4 -->|"❌ 취약함"| D["🗑️ 폐기"]
 
-    style C1 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style C2 fill:#A3E635,stroke:#A3E635,color:#0D1117
-    style T1 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style T2 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style T3 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style D fill:#1E293B,stroke:#FB7185,stroke-width:2px,color:#FB7185
+    style C1 fill:#2D1810,stroke:#FFD700,stroke-width:2px,color:#FFD700
+    style C2 fill:#FFD700,stroke:#FFD700,color:#1A0A00,stroke-width:3px
+    style T1 fill:#1A0A00,stroke:#FF6B00,stroke-width:2px,color:#FFB800
+    style T2 fill:#1A0A00,stroke:#FF6B00,stroke-width:2px,color:#FFB800
+    style T3 fill:#1A0A00,stroke:#FF6B00,stroke-width:2px,color:#FFB800
+    style T4 fill:#2D1810,stroke:#FF6B00,stroke-width:2px,color:#FFD700
+    style D fill:#1A0A00,stroke:#A0A0A0,stroke-width:1px,color:#A0A0A0
 ```
+
+**안전 우선** — 마스터 무기(`main`)는 시험이 가치를 증명할 때까지 절대 건드리지 않습니다. 실패한 실험은 병합되지 않고 폐기됩니다.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 📊 통계적 검증
+## 🔨 삼중 타격 — 대장장이의 합의
+
+한 번의 망치질은 속일 수 있습니다. 세 번의 타격이 진실을 드러냅니다.
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8',
-  'secondaryColor': '#0D1117',
-  'tertiaryColor': '#0D1117'
+  'primaryColor': '#2D1810',
+  'primaryTextColor': '#FFD700',
+  'primaryBorderColor': '#FF6B00',
+  'lineColor': '#FFB800',
+  'secondaryColor': '#1A0A00',
+  'tertiaryColor': '#1A0A00'
 }}}%%
 flowchart LR
-    subgraph EVAL["📊 3회 평가"]
+    subgraph STRIKE["🔨 삼중 타격 평가"]
         direction TB
-        E1["에이전트 1: 78"]
-        E2["에이전트 2: 81"]
-        E3["에이전트 3: 79"]
+        S1["🔨 대장장이 1<br/>점수: 78"]
+        S2["🔨 대장장이 2<br/>점수: 81"]
+        S3["🔨 대장장이 3<br/>점수: 79"]
     end
 
-    subgraph STATS["📈 통계"]
+    subgraph MEASURE["⚖️ 품질 측정"]
         direction TB
-        S1["평균: 79.3"]
-        S2["95% CI"]
+        M1["평균: 79.3"]
+        M2["95% 신뢰구간"]
     end
 
-    subgraph DECISION["⚖️"]
-        D1{"CI_신규 ><br/>CI_기존?"}
-        D1 -->|YES| MERGE["✅"]
-        D1 -->|NO| REJECT["❌"]
+    subgraph VERDICT["⚔️ 최종 판결"]
+        V1{"이전보다<br/>강한가?"}
+        V1 -->|"YES"| ACCEPT["✅ 재단조"]
+        V1 -->|"NO"| REJECT["❌ 폐기"]
     end
 
-    EVAL --> STATS --> DECISION
+    STRIKE --> MEASURE --> VERDICT
 
-    style E1 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style E2 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style E3 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style MERGE fill:#A3E635,stroke:#A3E635,color:#0D1117
-    style REJECT fill:#1E293B,stroke:#FB7185,stroke-width:2px,color:#FB7185
+    style S1 fill:#1A0A00,stroke:#FFB800,stroke-width:2px,color:#FFD700
+    style S2 fill:#1A0A00,stroke:#FFB800,stroke-width:2px,color:#FFD700
+    style S3 fill:#1A0A00,stroke:#FFB800,stroke-width:2px,color:#FFD700
+    style M1 fill:#2D1810,stroke:#FF6B00,stroke-width:2px,color:#FFD700
+    style M2 fill:#2D1810,stroke:#FF6B00,stroke-width:2px,color:#FFD700
+    style ACCEPT fill:#FFD700,stroke:#FFD700,color:#1A0A00,stroke-width:3px
+    style REJECT fill:#1A0A00,stroke:#A0A0A0,stroke-width:1px,color:#A0A0A0
 ```
+
+**통계적 합의** — 세 번의 독립적인 평가. 통계적 신뢰구간. 새 버전이 명백히 우수할 때만 병합합니다.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 📊 결과
+## 📊 단조 결과
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#38BDF8', 'secondaryColor': '#A3E635'}}}%%
-xychart-beta
-    title "부트스트래핑 결과"
-    x-axis ["이전", "이후"]
-    y-axis "점수" 0 --> 100
-    bar [71, 90.33]
-```
+**이전:** 71점 — 거칠고 미완성
+**이후:** 90.33점 — 담금질된 전설
 
-**+27% 향상** — skill-forge가 스스로를 진화시켰습니다
+**+27% 향상** — skill-forge가 스스로를 재단조했습니다
+
+궁극의 시험: 자신의 과정을 통해 스스로를 개선하는 도구.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 🛡️ 안전장치
+## 🔒 안전 메커니즘
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8',
-  'secondaryColor': '#0D1117',
-  'tertiaryColor': '#0D1117'
-}}}%%
-flowchart LR
-    subgraph SAFETY["🛡️ 안전 기둥"]
-        direction LR
-        P1["🔄<br/>롤백"]
-        P2["🔒<br/>보존"]
-        P3["📝<br/>기록"]
-        P4["⏱️<br/>최대 6회"]
-    end
+숙련된 대장장이는 여러 안전장치를 갖춥니다:
 
-    style P1 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style P2 fill:#1E293B,stroke:#A3E635,stroke-width:2px,color:#A3E635
-    style P3 fill:#1E293B,stroke:#38BDF8,stroke-width:2px,color:#E2E8F0
-    style P4 fill:#1E293B,stroke:#FB7185,stroke-width:2px,color:#FB7185
-```
+| 안전장치 | 보호 |
+|---------|------|
+| 🔄 **롤백 준비** | 원본 항상 보존 |
+| 🔒 **격리된 시험** | 별도 브랜치에서 테스트 |
+| 📝 **전체 로그** | 모든 타격 기록됨 |
+| ⏱️ **반복 제한** | 최대 6회 시도 |
+| ✅ **테스트 검증** | 모든 테스트 통과 필수 |
+
+대장간을 떠나는 무기는 모두 검증됩니다. 마스터 버전은 절대 손상되지 않습니다.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## 🚀 명령어
 
-| 명령어 | 설명 |
+| 명령어 | 동작 |
 |--------|------|
-| `/skill-forge:forge --scan` | 🔍 업그레이드 가능한 스킬 스캔 |
-| `/skill-forge:forge <skill>` | ⚡ 특정 스킬 단조 |
-| `/skill-forge:forge --history` | 📜 단조 기록 보기 |
-| `/skill-forge:forge --watch` | 👁️ 스킬 모니터링 |
+| `/skill-forge:forge --scan` | 🔍 재단조 가능한 스킬 탐색 |
+| `/skill-forge:forge <skill>` | ⚡ 특정 스킬 재단조 |
+| `/skill-forge:forge --history` | 📜 단조 연대기 보기 |
+| `/skill-forge:forge --watch` | 👁️ 대장간 모니터링 |
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## 📈 히스토리
+## 📚 대장간의 이론
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {
-  'git0': '#38BDF8',
-  'git1': '#A3E635',
-  'git2': '#FB7185',
-  'gitBranchLabel0': '#0D1117',
-  'gitBranchLabel1': '#0D1117',
-  'gitBranchLabel2': '#0D1117',
-  'commitLabelColor': '#E2E8F0',
-  'commitLabelBackground': '#1E293B',
-  'tagLabelColor': '#0D1117',
-  'tagLabelBackground': '#A3E635'
-}, 'gitGraph': {'showCommitLabel': true}}}%%
-gitGraph
-    commit id: "v0.5" tag: "Initial"
-    commit id: "TDD-Fit"
-    commit id: "Trial Branch"
-    branch forge-v0.6
-    commit id: "+Evaluator"
-    commit id: "+CI"
-    checkout main
-    merge forge-v0.6 id: "v0.6" tag: "71"
-    branch forge-v0.7
-    commit id: "+CSO"
-    commit id: "+Args"
-    checkout main
-    merge forge-v0.7 id: "v0.7" tag: "90.33"
-    commit id: "v1.0+" type: HIGHLIGHT
-```
+**괴델 머신** (Schmidhuber 2007) — 자신의 코드를 개선할 수 있는 자기 참조 시스템
+**동적 적응** — 통계적 검증을 통한 점진적 진화
+**TDD 안전 경계** — 테스트가 치명적 자기 수정을 방지
+**다중 평가자 합의** — 여러 독립 심사자가 편향을 줄임
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-## 📚 이론
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#1E293B',
-  'primaryTextColor': '#E2E8F0',
-  'primaryBorderColor': '#38BDF8',
-  'lineColor': '#38BDF8'
-}}}%%
-mindmap
-  root((📚))
-    괴델 머신
-      Schmidhuber 2007
-      자기 참조
-    동적 괴델
-      환경 적응
-      점진적 학습
-    TDD 안전
-      루프 방지
-      변경 경계
-    다중 평가자
-      합의 신뢰성
-      편향 방지
-```
+[전체 이론 읽기 →](docs/THEORY.md)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -354,6 +268,6 @@ mindmap
 
 **영감** [skill-up](https://github.com/BumgeunSong/skill-up)
 
-**Claude Code** · **MIT License**
+⚒️ **Claude Code로 단조됨** · 🔥 **MIT License** · ⚔️ **v1.0**
 
 </div>
