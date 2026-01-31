@@ -45,8 +45,9 @@
 ### 🏛️ 검증된 이론 기반
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#f1f5f9', 'primaryBorderColor': '#475569', 'lineColor': '#ea580c'}}}%%
 mindmap
-  root((기반 이론))
+  root((🔩 기반 이론))
     Gödel Machines
       증명 가능한 자기 개선
       Schmidhuber 2007
@@ -67,7 +68,7 @@ mindmap
 ### 📊 불꽃의 증거
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f97316', 'secondaryColor': '#10b981'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'secondaryColor': '#0d9488'}}}%%
 xychart-beta
     title "부트스트래핑 결과"
     x-axis ["이전", "이후"]
@@ -99,7 +100,7 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 ## 🔥 단조 과정
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f97316', 'secondaryColor': '#3b82f6', 'tertiaryColor': '#10b981'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#334155'}}}%%
 flowchart LR
     subgraph INPUT[" "]
         A[("🔩<br/>원재료 스킬")]
@@ -120,11 +121,11 @@ flowchart LR
     A --> B
     D --> E
 
-    style A fill:#6b7280,stroke:#374151,color:#fff
-    style B fill:#ef4444,stroke:#b91c1c,color:#fff
-    style C fill:#f97316,stroke:#ea580c,color:#fff
-    style D fill:#3b82f6,stroke:#1d4ed8,color:#fff
-    style E fill:#10b981,stroke:#059669,color:#fff
+    style A fill:#475569,stroke:#64748b,color:#f8fafc
+    style B fill:#ea580c,stroke:#c2410c,color:#fff
+    style C fill:#ea580c,stroke:#c2410c,color:#fff
+    style D fill:#0d9488,stroke:#0f766e,color:#fff
+    style E fill:#0d9488,stroke:#0f766e,color:#fff
 ```
 
 ---
@@ -134,7 +135,7 @@ flowchart LR
 스킬이 대장간에 들어가기 전, 열 테스트를 통과해야 합니다:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph CHECK["🔥 TDD-Fit 체크리스트"]
         direction TB
@@ -149,13 +150,13 @@ flowchart TB
     RESULT -->|"✅ YES"| READY["🔨 단조 준비 완료"]
     RESULT -->|"❌ NO"| SKIP["⏭️ 스킵"]
 
-    style Q1 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q2 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q3 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q4 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q5 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style READY fill:#10b981,stroke:#059669,color:#fff
-    style SKIP fill:#6b7280,stroke:#374151,color:#fff
+    style Q1 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q4 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q5 fill:#ea580c,stroke:#c2410c,color:#fff
+    style READY fill:#0d9488,stroke:#0f766e,color:#fff
+    style SKIP fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -165,7 +166,7 @@ flowchart TB
 스킬은 안전을 위해 별도의 모루(브랜치)에서 단조됩니다:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph MAIN["🏠 main 브랜치"]
         direction LR
@@ -186,12 +187,12 @@ flowchart TB
     T3 -->|"✅ CI_lower > CI_upper"| C2
     T3 -->|"❌ 개선 없음"| D["🗑️ 폐기"]
 
-    style C1 fill:#6b7280,stroke:#374151,color:#fff
-    style C2 fill:#10b981,stroke:#059669,color:#fff
-    style T1 fill:#f97316,stroke:#ea580c,color:#fff
-    style T2 fill:#f97316,stroke:#ea580c,color:#fff
-    style T3 fill:#eab308,stroke:#ca8a04,color:#fff
-    style D fill:#ef4444,stroke:#b91c1c,color:#fff
+    style C1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C2 fill:#0d9488,stroke:#0f766e,color:#fff
+    style T1 fill:#ea580c,stroke:#c2410c,color:#fff
+    style T2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style T3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style D fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -201,7 +202,7 @@ flowchart TB
 통계적으로 유의미한 개선만 살아남습니다:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart LR
     subgraph EVAL["📊 3중 평가"]
         direction TB
@@ -225,11 +226,11 @@ flowchart LR
 
     EVAL --> STATS --> DECISION
 
-    style E1 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style E2 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style E3 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style MERGE fill:#10b981,stroke:#059669,color:#fff
-    style REJECT fill:#ef4444,stroke:#b91c1c,color:#fff
+    style E1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style E2 fill:#475569,stroke:#64748b,color:#f8fafc
+    style E3 fill:#475569,stroke:#64748b,color:#f8fafc
+    style MERGE fill:#0d9488,stroke:#0f766e,color:#fff
+    style REJECT fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -239,7 +240,7 @@ flowchart LR
 각 스킬은 5가지 차원에서 평가됩니다:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ea580c', 'secondaryColor': '#0d9488', 'tertiaryColor': '#475569', 'primaryTextColor': '#f8fafc'}}}%%
 pie showData
     title 품질 점수 가중치
     "테스트 통과율" : 30
@@ -254,7 +255,7 @@ pie showData
 ## 🛡️ 안전 메커니즘
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph SAFETY["🛡️ 안전의 4대 기둥"]
         direction LR
@@ -264,10 +265,10 @@ flowchart TB
         P4["⏱️<br/>최대 6회 반복<br/>─────<br/>과최적화<br/>방지"]
     end
 
-    style P1 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style P2 fill:#d1fae5,stroke:#10b981,color:#000
-    style P3 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style P4 fill:#fce7f3,stroke:#ec4899,color:#000
+    style P1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style P2 fill:#0d9488,stroke:#0f766e,color:#fff
+    style P3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style P4 fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -300,7 +301,7 @@ chmod +x ~/.claude/plugins/local/skill-forge/hooks/*.sh
 ## 🚀 명령어
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart LR
     subgraph COMMANDS["🚀 사용 가능한 명령어"]
         direction TB
@@ -310,10 +311,10 @@ flowchart LR
         C4["/skill-forge:forge --watch<br/>👁️ 스킬 모니터링"]
     end
 
-    style C1 fill:#ede9fe,stroke:#8b5cf6,color:#000
-    style C2 fill:#fce7f3,stroke:#ec4899,color:#000
-    style C3 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style C4 fill:#d1fae5,stroke:#10b981,color:#000
+    style C1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style C3 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C4 fill:#0d9488,stroke:#0f766e,color:#fff
 ```
 
 ---
@@ -321,7 +322,7 @@ flowchart LR
 ## 📈 단조 이력
 
 ```mermaid
-%%{init: {'theme': 'base', 'gitGraph': {'showCommitLabel': true}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'git0': '#475569', 'git1': '#ea580c', 'git2': '#0d9488', 'gitBranchLabel0': '#f8fafc', 'gitBranchLabel1': '#fff', 'gitBranchLabel2': '#fff', 'commitLabelColor': '#f8fafc', 'commitLabelBackground': '#475569', 'tagLabelColor': '#fff', 'tagLabelBackground': '#0d9488'}, 'gitGraph': {'showCommitLabel': true}}}%%
 gitGraph
     commit id: "v0.5" tag: "초기"
     commit id: "TDD-Fit"
@@ -345,7 +346,7 @@ gitGraph
 ## 📚 전승 (참고자료)
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#f1f5f9', 'primaryBorderColor': '#475569', 'lineColor': '#ea580c'}}}%%
 mindmap
   root((📚 참고자료))
     Gödel Machines

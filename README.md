@@ -45,8 +45,9 @@
 ### 🏛️ Built on Proven Theory
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#f1f5f9', 'primaryBorderColor': '#475569', 'lineColor': '#ea580c'}}}%%
 mindmap
-  root((Foundations))
+  root((🔩 Foundations))
     Gödel Machines
       Provable self-improvement
       Schmidhuber 2007
@@ -67,7 +68,7 @@ mindmap
 ### 📊 Proof of the Flame
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f97316', 'secondaryColor': '#10b981'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'secondaryColor': '#0d9488'}}}%%
 xychart-beta
     title "Bootstrapping Results"
     x-axis ["Before", "After"]
@@ -99,7 +100,7 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 ## 🔥 The Forging Process
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f97316', 'secondaryColor': '#3b82f6', 'tertiaryColor': '#10b981'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#334155'}}}%%
 flowchart LR
     subgraph INPUT[" "]
         A[("🔩<br/>Raw Skill")]
@@ -120,11 +121,11 @@ flowchart LR
     A --> B
     D --> E
 
-    style A fill:#6b7280,stroke:#374151,color:#fff
-    style B fill:#ef4444,stroke:#b91c1c,color:#fff
-    style C fill:#f97316,stroke:#ea580c,color:#fff
-    style D fill:#3b82f6,stroke:#1d4ed8,color:#fff
-    style E fill:#10b981,stroke:#059669,color:#fff
+    style A fill:#475569,stroke:#64748b,color:#f8fafc
+    style B fill:#ea580c,stroke:#c2410c,color:#fff
+    style C fill:#ea580c,stroke:#c2410c,color:#fff
+    style D fill:#0d9488,stroke:#0f766e,color:#fff
+    style E fill:#0d9488,stroke:#0f766e,color:#fff
 ```
 
 ---
@@ -134,7 +135,7 @@ flowchart LR
 Before any skill enters the forge, it must pass the heat test:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph CHECK["🔥 TDD-Fit Checklist"]
         direction TB
@@ -149,13 +150,13 @@ flowchart TB
     RESULT -->|"✅ YES"| READY["🔨 Ready for Forge"]
     RESULT -->|"❌ NO"| SKIP["⏭️ Skip"]
 
-    style Q1 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q2 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q3 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q4 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style Q5 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style READY fill:#10b981,stroke:#059669,color:#fff
-    style SKIP fill:#6b7280,stroke:#374151,color:#fff
+    style Q1 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q4 fill:#ea580c,stroke:#c2410c,color:#fff
+    style Q5 fill:#ea580c,stroke:#c2410c,color:#fff
+    style READY fill:#0d9488,stroke:#0f766e,color:#fff
+    style SKIP fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -165,7 +166,7 @@ flowchart TB
 The skill is hammered on a separate anvil (branch) for safety:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph MAIN["🏠 main branch"]
         direction LR
@@ -186,12 +187,12 @@ flowchart TB
     T3 -->|"✅ CI_lower > CI_upper"| C2
     T3 -->|"❌ Not improved"| D["🗑️ Discard"]
 
-    style C1 fill:#6b7280,stroke:#374151,color:#fff
-    style C2 fill:#10b981,stroke:#059669,color:#fff
-    style T1 fill:#f97316,stroke:#ea580c,color:#fff
-    style T2 fill:#f97316,stroke:#ea580c,color:#fff
-    style T3 fill:#eab308,stroke:#ca8a04,color:#fff
-    style D fill:#ef4444,stroke:#b91c1c,color:#fff
+    style C1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C2 fill:#0d9488,stroke:#0f766e,color:#fff
+    style T1 fill:#ea580c,stroke:#c2410c,color:#fff
+    style T2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style T3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style D fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -201,7 +202,7 @@ flowchart TB
 Only statistically significant improvements survive:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart LR
     subgraph EVAL["📊 Triple Evaluation"]
         direction TB
@@ -225,11 +226,11 @@ flowchart LR
 
     EVAL --> STATS --> DECISION
 
-    style E1 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style E2 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style E3 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style MERGE fill:#10b981,stroke:#059669,color:#fff
-    style REJECT fill:#ef4444,stroke:#b91c1c,color:#fff
+    style E1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style E2 fill:#475569,stroke:#64748b,color:#f8fafc
+    style E3 fill:#475569,stroke:#64748b,color:#f8fafc
+    style MERGE fill:#0d9488,stroke:#0f766e,color:#fff
+    style REJECT fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -239,7 +240,7 @@ flowchart LR
 Each skill is scored across five dimensions:
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ea580c', 'secondaryColor': '#0d9488', 'tertiaryColor': '#475569', 'primaryTextColor': '#f8fafc'}}}%%
 pie showData
     title Quality Score Weights
     "Test Pass Rate" : 30
@@ -254,7 +255,7 @@ pie showData
 ## 🛡️ Safety Mechanisms
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart TB
     subgraph SAFETY["🛡️ Four Pillars of Safety"]
         direction LR
@@ -264,10 +265,10 @@ flowchart TB
         P4["⏱️<br/>Max 6 Iterations<br/>─────<br/>Prevent over-<br/>optimization"]
     end
 
-    style P1 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style P2 fill:#d1fae5,stroke:#10b981,color:#000
-    style P3 fill:#fef3c7,stroke:#f59e0b,color:#000
-    style P4 fill:#fce7f3,stroke:#ec4899,color:#000
+    style P1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style P2 fill:#0d9488,stroke:#0f766e,color:#fff
+    style P3 fill:#ea580c,stroke:#c2410c,color:#fff
+    style P4 fill:#475569,stroke:#64748b,color:#f8fafc
 ```
 
 ---
@@ -300,7 +301,7 @@ chmod +x ~/.claude/plugins/local/skill-forge/hooks/*.sh
 ## 🚀 Commands
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#475569', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#64748b', 'lineColor': '#94a3b8'}}}%%
 flowchart LR
     subgraph COMMANDS["🚀 Available Commands"]
         direction TB
@@ -310,10 +311,10 @@ flowchart LR
         C4["/skill-forge:forge --watch<br/>👁️ Monitor skills"]
     end
 
-    style C1 fill:#ede9fe,stroke:#8b5cf6,color:#000
-    style C2 fill:#fce7f3,stroke:#ec4899,color:#000
-    style C3 fill:#dbeafe,stroke:#3b82f6,color:#000
-    style C4 fill:#d1fae5,stroke:#10b981,color:#000
+    style C1 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C2 fill:#ea580c,stroke:#c2410c,color:#fff
+    style C3 fill:#475569,stroke:#64748b,color:#f8fafc
+    style C4 fill:#0d9488,stroke:#0f766e,color:#fff
 ```
 
 ---
@@ -321,7 +322,7 @@ flowchart LR
 ## 📈 Forging History
 
 ```mermaid
-%%{init: {'theme': 'base', 'gitGraph': {'showCommitLabel': true}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'git0': '#475569', 'git1': '#ea580c', 'git2': '#0d9488', 'gitBranchLabel0': '#f8fafc', 'gitBranchLabel1': '#fff', 'gitBranchLabel2': '#fff', 'commitLabelColor': '#f8fafc', 'commitLabelBackground': '#475569', 'tagLabelColor': '#fff', 'tagLabelBackground': '#0d9488'}, 'gitGraph': {'showCommitLabel': true}}}%%
 gitGraph
     commit id: "v0.5" tag: "Initial"
     commit id: "TDD-Fit"
@@ -345,7 +346,7 @@ gitGraph
 ## 📚 The Lore (References)
 
 ```mermaid
-%%{init: {'theme': 'base'}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#f1f5f9', 'primaryBorderColor': '#475569', 'lineColor': '#ea580c'}}}%%
 mindmap
   root((📚 References))
     Gödel Machines
