@@ -4,6 +4,16 @@
 
 AI 에이전트 스킬을 자동으로 분석, 평가, 개선합니다. 테스트 주도 개발(TDD) 원칙을 활용한 안전한 자기 개선 루프를 제공합니다.
 
+> **Built on Solid Research**
+>
+> 이 프로젝트는 검증된 이론과 연구에 기반합니다:
+> - **Gödel Machines** (Schmidhuber, 2007) - 자기 참조 시스템의 증명 가능한 자기 개선
+> - **Dynamic Gödel Machines** - 동적 환경에서의 점진적 최적화
+> - **Test-Driven Development** - 테스트를 통한 안전한 변경 경계 정의
+> - **Statistical Validation** - 95% 신뢰구간을 통한 유의미한 향상 검증
+>
+> 자세한 내용은 [연구 배경](#연구-배경) 및 [참고자료](#참고자료)를 참조하세요.
+
 ---
 
 ## Table of Contents
