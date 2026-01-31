@@ -9,7 +9,7 @@
 
 ### ⟨ TDD 진화 엔진 ⟩
 
-[![Version](https://img.shields.io/badge/v0.7-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v0.8-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-38BDF8?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-E2E8F0?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=38BDF8)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -66,6 +66,53 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 | 🔄 안전한 롤백 | 📊 통계 |
 |:---:|:---:|
 | 실패 시 원본 보존 | 실시간 점수 추적 |
+
+### 🔀 하이브리드 업그레이드 모드 (v0.8)
+
+이제 두 가지 경로로 스킬을 업그레이드할 수 있습니다:
+
+| 모드 | 조건 | 방법 |
+|------|------|------|
+| **TDD 모드** | 테스트 파일 존재 | 통계적 검증 (95% CI) |
+| **휴리스틱 모드** | 테스트 없음 | 사용량 패턴 + 구조 분석 |
+
+```bash
+# 업그레이드 모드 확인
+source hooks/lib/storage-local.sh
+get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
+```
+
+### 📊 스킬 모니터 (v0.8)
+
+스킬 사용량을 추적하고 업그레이드 추천을 받으세요:
+
+```
+/monitor
+```
+
+출력 예시:
+```
+╔══════════════════════════════════════════════════════════════╗
+║                    Skill Forge Monitor                        ║
+╠══════════════════════════════════════════════════════════════╣
+║ Skill                │ Usage │ Trend   │ Mode       │ Pri    ║
+╠══════════════════════╪═══════╪═════════╪════════════╪════════╣
+║ skill-forge:forge    │    45 │ ▲ +20%  │ TDD_FIT    │ MED    ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### 🎖️ 강화된 등급 시스템 (v0.8)
+
+새로운 등급 Modifier와 SSS 티어:
+
+| Modifier | 보너스 | 조건 |
+|----------|--------|------|
+| 업그레이드됨 | +1 | `upgraded: true` |
+| 효율적 | +0.5 | 토큰/사용량 < 1500 |
+| 상승 트렌드 | +0.5 | positive 트렌드 |
+| 테스트됨 | +0.5 | 테스트 파일 존재 |
+
+**S + Upgraded + Efficient = SSS** ★★★
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

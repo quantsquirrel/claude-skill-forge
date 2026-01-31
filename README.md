@@ -9,7 +9,7 @@
 
 ### ⟨ The TDD Evolution Engine ⟩
 
-[![Version](https://img.shields.io/badge/v0.7-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v0.8-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-38BDF8?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-E2E8F0?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=38BDF8)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -66,6 +66,53 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 | 🔄 Safe Rollback | 📊 Statistics |
 |:---:|:---:|
 | Original preserved on failure | Real-time score tracking |
+
+### 🔀 Hybrid Upgrade Mode (v0.8)
+
+Skills can now be upgraded through two paths:
+
+| Mode | Condition | Method |
+|------|-----------|--------|
+| **TDD Mode** | Test files exist | Statistical validation (95% CI) |
+| **Heuristic Mode** | No tests | Usage patterns + structure analysis |
+
+```bash
+# Check upgrade mode
+source hooks/lib/storage-local.sh
+get_upgrade_mode "my-skill"  # Returns: TDD_FIT or HEURISTIC
+```
+
+### 📊 Skill Monitor (v0.8)
+
+Track skill usage and get upgrade recommendations:
+
+```
+/monitor
+```
+
+Output:
+```
+╔══════════════════════════════════════════════════════════════╗
+║                    Skill Forge Monitor                        ║
+╠══════════════════════════════════════════════════════════════╣
+║ Skill                │ Usage │ Trend   │ Mode       │ Pri    ║
+╠══════════════════════╪═══════╪═════════╪════════════╪════════╣
+║ skill-forge:forge    │    45 │ ▲ +20%  │ TDD_FIT    │ MED    ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### 🎖️ Enhanced Grades (v0.8)
+
+New grade modifiers and SSS tier:
+
+| Modifier | Bonus | Condition |
+|----------|-------|-----------|
+| Upgraded | +1 | `upgraded: true` |
+| Efficient | +0.5 | tokens/usage < 1500 |
+| Trending | +0.5 | positive trend |
+| Tested | +0.5 | has test files |
+
+**S + Upgraded + Efficient = SSS** ★★★
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
