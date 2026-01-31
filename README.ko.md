@@ -9,7 +9,7 @@
 
 ### ⟨ TDD 진화 엔진 ⟩
 
-[![Version](https://img.shields.io/badge/v0.8-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v1.0-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-38BDF8?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-E2E8F0?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=38BDF8)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -67,7 +67,7 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 |:---:|:---:|
 | 실패 시 원본 보존 | 실시간 점수 추적 |
 
-### 🔀 하이브리드 업그레이드 모드 (v0.8)
+### 🔀 하이브리드 업그레이드 모드 (v1.0)
 
 이제 두 가지 경로로 스킬을 업그레이드할 수 있습니다:
 
@@ -82,7 +82,7 @@ source hooks/lib/storage-local.sh
 get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
 ```
 
-### 📊 스킬 모니터 (v0.8)
+### 📊 스킬 모니터 (v1.0)
 
 스킬 사용량을 추적하고 업그레이드 추천을 받으세요:
 
@@ -101,7 +101,7 @@ get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-### 🎖️ 강화된 등급 시스템 (v0.8)
+### 🎖️ 강화된 등급 시스템 (v1.0)
 
 새로운 등급 Modifier와 SSS 티어:
 
@@ -318,7 +318,7 @@ gitGraph
     commit id: "+Args"
     checkout main
     merge forge-v0.7 id: "v0.7" tag: "90.33"
-    commit id: "v0.8+" type: HIGHLIGHT
+    commit id: "v1.0+" type: HIGHLIGHT
 ```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

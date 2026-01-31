@@ -9,7 +9,7 @@
 
 ### ⟨ The TDD Evolution Engine ⟩
 
-[![Version](https://img.shields.io/badge/v0.8-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v1.0-A3E635?style=flat-square&logoColor=0D1117)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-38BDF8?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-E2E8F0?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=38BDF8)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -67,7 +67,7 @@ git clone https://github.com/quantsquirrel/claude-skill-forge.git \
 |:---:|:---:|
 | Original preserved on failure | Real-time score tracking |
 
-### 🔀 Hybrid Upgrade Mode (v0.8)
+### 🔀 Hybrid Upgrade Mode (v1.0)
 
 Skills can now be upgraded through two paths:
 
@@ -82,7 +82,7 @@ source hooks/lib/storage-local.sh
 get_upgrade_mode "my-skill"  # Returns: TDD_FIT or HEURISTIC
 ```
 
-### 📊 Skill Monitor (v0.8)
+### 📊 Skill Monitor (v1.0)
 
 Track skill usage and get upgrade recommendations:
 
@@ -101,7 +101,7 @@ Output:
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-### 🎖️ Enhanced Grades (v0.8)
+### 🎖️ Enhanced Grades (v1.0)
 
 New grade modifiers and SSS tier:
 
@@ -318,7 +318,7 @@ gitGraph
     commit id: "+Args"
     checkout main
     merge forge-v0.7 id: "v0.7" tag: "90.33"
-    commit id: "v0.8+" type: HIGHLIGHT
+    commit id: "v1.0+" type: HIGHLIGHT
 ```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

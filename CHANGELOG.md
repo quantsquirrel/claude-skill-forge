@@ -4,7 +4,7 @@ All notable changes to skill-forge will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.8.0] - 2026-02-01
+## [1.0.0] - 2026-02-01
 
 ### Added
 - **Hybrid Upgrade Mode**: 테스트 없는 스킬도 휴리스틱 기반으로 업그레이드 가능
