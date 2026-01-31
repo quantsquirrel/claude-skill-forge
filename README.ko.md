@@ -9,8 +9,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.7-blue.svg)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet.svg)](https://claude.ai)
+[![GitHub stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=social)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Last Commit](https://img.shields.io/github/last-commit/quantsquirrel/claude-skill-forge)](https://github.com/quantsquirrel/claude-skill-forge)
 
 *테스트 주도 개발 원칙을 활용하여 AI 에이전트 스킬을 자동으로 분석, 평가, 개선합니다.*
+
+> *"Claude Code 스킬을 위한 유일한 TDD 기반 자기 개선 시스템"*
 
 [빠른 시작](#-빠른-시작) · [기능](#-핵심-기능) · [문서](#-연구-배경) · [참고자료](#-참고자료)
 
@@ -274,6 +278,20 @@ Trial Branch: trial/executor
 | v0.6 | 71 | +평가자 분리, +CI 검증 |
 | **v0.7** | **90.33** (+19) | +CSO 준수, +Arguments, +Prerequisites |
 | v0.8+ | 🚧 | 예정: 추가 부트스트래핑 |
+
+---
+
+## 🏆 벤치마크
+
+skill-forge는 자체 개선을 통해 검증되었습니다:
+
+| 지표 | 기준선 | 1라운드 후 | 개선율 |
+|------|--------|-----------|--------|
+| CSO 점수 | 71 | 90.33 | **+27%** |
+| 테스트 커버리지 | - | TDD 강제 | ✅ |
+| CI 검증 | - | 95% CI | ✅ |
+
+> forge 스킬은 skill-forge 자체를 사용하여 개선되었습니다 (부트스트래핑).
 
 ---
 

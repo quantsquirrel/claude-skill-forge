@@ -6,9 +6,13 @@
 
 **TDD-Based Automatic Skill Upgrade Plugin for Claude Code**
 
+> *"The only TDD-based self-improvement system for Claude Code skills"*
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.7-blue.svg)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet.svg)](https://claude.ai)
+[![GitHub stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=social)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Last Commit](https://img.shields.io/github/last-commit/quantsquirrel/claude-skill-forge)](https://github.com/quantsquirrel/claude-skill-forge)
 
 *Automatically analyze, evaluate, and improve AI agent skills using Test-Driven Development principles.*
 
@@ -274,6 +278,20 @@ Baseline: 75 (CI: [72, 78])
 | v0.6 | 71 | +Evaluator separation, +CI validation |
 | **v0.7** | **90.33** (+19) | +CSO compliance, +Arguments, +Prerequisites |
 | v0.8+ | 🚧 | Planned: Additional bootstrapping |
+
+---
+
+## 🏆 Benchmarks
+
+skill-forge has been validated through self-improvement:
+
+| Metric | Baseline | After 1 Round | Improvement |
+|--------|----------|---------------|-------------|
+| CSO Score | 71 | 90.33 | **+27%** |
+| Test Coverage | - | TDD-enforced | ✅ |
+| CI Validation | - | 95% CI | ✅ |
+
+> The forge skill was improved using skill-forge itself (bootstrapping).
 
 ---
 
