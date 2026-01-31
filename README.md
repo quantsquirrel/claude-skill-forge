@@ -117,13 +117,22 @@ flowchart TD
 #### 3️⃣ Trial Branch Strategy
 
 ```mermaid
-gitGraph
-    commit id: "main"
-    branch trial/skill-name
-    commit id: "improve"
-    commit id: "evaluate"
-    checkout main
-    merge trial/skill-name id: "merge (success)" type: HIGHLIGHT
+flowchart LR
+    subgraph main[" main branch "]
+        M1[("●")] --> M2[("●")]
+    end
+
+    subgraph trial[" trial/skill-name "]
+        T1["improve"] --> T2["evaluate"]
+    end
+
+    M1 -.->|branch| T1
+    T2 ==>|"✅ merge<br/>(on success)"| M2
+
+    style M1 fill:#4a5568,stroke:#2d3748,color:#fff
+    style M2 fill:#48bb78,stroke:#2f855a,color:#fff
+    style T1 fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style T2 fill:#4299e1,stroke:#2b6cb0,color:#fff
 ```
 
 > On failure, trial branch is discarded without merging.

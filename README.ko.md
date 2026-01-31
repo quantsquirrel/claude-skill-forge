@@ -117,13 +117,22 @@ flowchart TD
 #### 3️⃣ Trial Branch 전략
 
 ```mermaid
-gitGraph
-    commit id: "main"
-    branch trial/skill-name
-    commit id: "개선"
-    commit id: "평가"
-    checkout main
-    merge trial/skill-name id: "병합 (성공)" type: HIGHLIGHT
+flowchart LR
+    subgraph main[" main 브랜치 "]
+        M1[("●")] --> M2[("●")]
+    end
+
+    subgraph trial[" trial/skill-name "]
+        T1["개선"] --> T2["평가"]
+    end
+
+    M1 -.->|분기| T1
+    T2 ==>|"✅ 병합<br/>(성공 시)"| M2
+
+    style M1 fill:#4a5568,stroke:#2d3748,color:#fff
+    style M2 fill:#48bb78,stroke:#2f855a,color:#fff
+    style T1 fill:#4299e1,stroke:#2b6cb0,color:#fff
+    style T2 fill:#4299e1,stroke:#2b6cb0,color:#fff
 ```
 
 > 실패 시 trial 브랜치는 병합 없이 폐기됩니다.
