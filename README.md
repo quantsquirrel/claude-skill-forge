@@ -11,7 +11,7 @@
 
 ### ⚔️ Forge your skills into legendary weapons
 
-[![Version](https://img.shields.io/badge/v1.0-FFB800?style=flat-square&logoColor=1A0A00)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v1.1-FFB800?style=flat-square&logoColor=1A0A00)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-FF6B00?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-FFD700?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=FF6B00)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -91,18 +91,55 @@ get_upgrade_mode "my-skill"  # Returns: TDD_FIT or HEURISTIC
 Track your weapons and see which need reforging:
 
 ```
-/monitor
+/monitor [--priority=HIGH|MED|LOW] [--type=explicit|silent|all]
 ```
 
 Output:
 ```
-╔══════════════════════════════════════════════════════════════╗
-║                    🔥 Forge Monitor                           ║
-╠══════════════════════════════════════════════════════════════╣
-║ Weapon               │ Strikes │ Heat   │ Method     │ Grade ║
-╠══════════════════════╪═════════╪════════╪════════════╪═══════╣
-║ skill-forge:forge    │    45   │ ▲ +20% │ TDD_FIT    │ MED   ║
-╚══════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════╗
+║                      🔥 Skill Forge Monitor                           ║
+╠══════════════════════════════════════════════════════════════════════╣
+║ Quality Analysis (품질 기반 - 사용량과 무관)                          ║
+╠════════════════════════╤══════════╤═══════╤══════════╤═══════════════╣
+║ Skill                  │ Type     │ Score │ Grade    │ Priority      ║
+╠════════════════════════╪══════════╪═══════╪══════════╪═══════════════╣
+║ omc:git-master         │ silent   │   45  │ C        │ [HIGH] ⚡     ║
+║ skill-forge:forge      │ explicit │   90  │ A        │ [READY] ✓     ║
+╚════════════════════════╧══════════╧═══════╧══════════╧═══════════════╝
+```
+
+### ⚔️ Skill Type Detection (v1.1)
+
+Skills are classified by how they're invoked:
+
+| Type | Description | Quality Criteria |
+|------|-------------|------------------|
+| **explicit** | User invokes with `/command` | argument-hint, mode docs, examples |
+| **silent** | Auto-triggered by context | trigger keywords, when-to-use, red-flags |
+
+```bash
+# Check skill type
+source hooks/lib/storage-local.sh
+get_skill_type "my-skill"  # Returns: explicit | silent
+```
+
+### 📈 Quality-Based Recommendations (v1.1)
+
+**Core Principle: Usage ≠ Quality**
+
+The forge evaluates skills by structure, not popularity:
+
+| Priority | Score | Action |
+|----------|-------|--------|
+| **HIGH** | < 40 | Immediate reforging needed |
+| **MED** | 40-59 | Improvement recommended |
+| **LOW** | 60-79 | Optional enhancement |
+| **READY** | ≥ 80 | Quality assured |
+
+```bash
+# Get quality score
+get_skill_quality_score "my-skill"
+# Returns: JSON with score, breakdown, grade (A/B/C/D)
 ```
 
 ### 🎖️ Legendary Grades (v1.0)
@@ -250,6 +287,20 @@ No weapon leaves the forge untested. No master version is ever corrupted.
 | `/skill-forge:forge <skill>` | ⚡ Reforge a specific skill |
 | `/skill-forge:forge --history` | 📜 View forging chronicles |
 | `/skill-forge:forge --watch` | 👁️ Monitor the forge |
+| `/skill-forge:monitor` | 📊 Quality dashboard |
+| `/skill-forge:visualize` | 🎮 RPG-style skill inventory |
+
+### 💡 Argument Hints (v1.1)
+
+When typing a slash command, you'll see available modes:
+
+```
+/forge <skill-name> [--precision=high|-n5] - modes: TDD_FIT|HEURISTIC
+/monitor [--priority=HIGH|MED|LOW] [--type=explicit|silent|all]
+/visualize [--month=YYYY-MM] [--format=html|text]
+```
+
+Add `argument-hint` to your skill's frontmatter to enable this feature.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -268,6 +319,6 @@ No weapon leaves the forge untested. No master version is ever corrupted.
 
 **Inspired by** [skill-up](https://github.com/BumgeunSong/skill-up)
 
-⚒️ **Forged with Claude Code** · 🔥 **MIT License** · ⚔️ **v1.0**
+⚒️ **Forged with Claude Code** · 🔥 **MIT License** · ⚔️ **v1.1**
 
 </div>
