@@ -12,7 +12,6 @@ Slash command documentation files that provide user-facing help text for each sk
 | File | Description |
 |------|-------------|
 | `forge.md` | Documentation for `/skill-forge:forge` - main upgrade command |
-| `hello.md` | Documentation for `/skill-forge:hello` - simple test command |
 | `visualize.md` | Documentation for `/skill-forge:visualize` - skill stats display |
 | `writing-skills.md` | Documentation for `/skill-forge:writing-skills` - TDD skill methodology |
 

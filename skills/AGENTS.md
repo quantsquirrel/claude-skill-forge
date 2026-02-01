@@ -12,7 +12,6 @@ Skill definitions directory. Each subdirectory contains a complete skill with SK
 | Directory | Purpose |
 |-----------|---------|
 | `forge/` | Main upgrade skill - TDD evaluation and improvement (see `forge/AGENTS.md`) |
-| `hello/` | Simple test skill for validation (see `hello/AGENTS.md`) |
 | `visualize/` | Skill stats visualization and dashboard (see `visualize/AGENTS.md`) |
 | `writing-skills/` | TDD methodology guide for skill creation (see `writing-skills/AGENTS.md`) |
 
