@@ -1,6 +1,6 @@
-<!-- Generated: 2026-01-31 | Updated: 2026-01-31 -->
+<!-- Generated: 2026-01-31 | Updated: 2026-02-08 -->
 
-# skill-forge
+# claude-forge-smith
 
 ## Purpose
 
@@ -18,11 +18,15 @@ TDD 기반 스킬 자동 업그레이드 플러그인. AI 에이전트 스킬을
 | Directory | Purpose |
 |-----------|---------|
 | `.claude-plugin/` | Plugin metadata and configuration (see `.claude-plugin/AGENTS.md`) |
-| `commands/` | Slash command documentation files (see `commands/AGENTS.md`) |
+| `.github/` | GitHub workflows, issue templates, PR templates (see `.github/AGENTS.md`) |
 | `config/` | Environment configuration settings (see `config/AGENTS.md`) |
 | `data/` | Data storage for baselines, detections, golden packets (see `data/AGENTS.md`) |
+| `docs/` | Project documentation and theoretical foundations (see `docs/AGENTS.md`) |
+| `examples/` | Usage examples and tutorials (see `examples/AGENTS.md`) |
 | `hooks/` | Claude Code hooks for tool/session lifecycle (see `hooks/AGENTS.md`) |
+| `scripts/` | Automation and utility scripts (see `scripts/AGENTS.md`) |
 | `skills/` | Skill definitions with SKILL.md files (see `skills/AGENTS.md`) |
+| `tests/` | Test suite with unit, integration, and e2e tests (see `tests/AGENTS.md`) |
 | `visualize/` | HTML templates for skill visualization (see `visualize/AGENTS.md`) |
 
 ## For AI Agents

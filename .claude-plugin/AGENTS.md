@@ -1,5 +1,5 @@
 <!-- Parent: ../AGENTS.md -->
-<!-- Generated: 2026-01-31 | Updated: 2026-01-31 -->
+<!-- Generated: 2026-01-31 | Updated: 2026-02-08 -->
 
 # .claude-plugin
 
@@ -19,7 +19,7 @@ Plugin metadata directory containing the manifest file that registers skill-forg
 
 - `plugin.json` defines the plugin's identity for Claude Code
 - The `skills` field points to `./skills/` directory
-- Version follows semver (currently 0.5.0)
+- Version follows semver (currently 1.0.0)
 
 ### Testing Requirements
 

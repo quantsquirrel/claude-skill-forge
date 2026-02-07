@@ -1,5 +1,5 @@
 ---
-name: skill-up:visualize
+name: visualize
 description: 'Use when the user wants to see their skill inventory, stat sheet, or skill visualization. Triggers on 스킬 보여줘, 스탯창, 내 스킬, 능력치, 내 레벨, 경험치, /visualize, skill inventory, 스킬트리, skill tree, my skills, show stats, character sheet'
 argument-hint: [--month=YYYY-MM (default: current)] [--format=html|text (default: html)]
 allowed-tools: Read, Glob, Grep, Bash, Write

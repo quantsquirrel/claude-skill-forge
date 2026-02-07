@@ -1,5 +1,5 @@
 <!-- Parent: ../AGENTS.md -->
-<!-- Generated: 2026-01-31 | Updated: 2026-01-31 -->
+<!-- Generated: 2026-01-31 | Updated: 2026-02-08 -->
 
 # forge
 
@@ -13,6 +13,7 @@ Main upgrade skill implementing TDD-based evaluation and improvement workflow. U
 |------|-------------|
 | `SKILL.md` | Main skill definition with 11-step workflow |
 | `evaluator.md` | Subskill for independent evaluation (used by critic agent) |
+| `heuristic-evaluator.md` | Subskill for heuristic-based evaluation (skills without tests) |
 | `rubric.md` | Scoring rubric with weighted criteria |
 
 ## For AI Agents

@@ -1,5 +1,5 @@
 {
-  "skill_name": "skill-forge:forge",
+  "skill_name": "forge:forge",
   "version": "v0.7",
   "bootstrapping": {
     "iterations": 1,

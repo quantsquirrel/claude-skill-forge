@@ -1,5 +1,5 @@
 ---
-name: skill-forge:rubric
+name: rubric
 description: 평가 기준표 (참조용, 수정 금지)
 user-invocable: false
 ---

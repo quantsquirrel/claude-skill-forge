@@ -1,5 +1,5 @@
 <!-- Parent: ../AGENTS.md -->
-<!-- Generated: 2026-01-31 | Updated: 2026-01-31 -->
+<!-- Generated: 2026-01-31 | Updated: 2026-02-08 -->
 
 # lib
 
@@ -13,6 +13,7 @@ Shared shell library functions for all hooks. Provides configuration loading, st
 |------|-------------|
 | `common.sh` | Main loader - sources config and storage backend, JSON parsing helpers |
 | `config.sh` | Configuration loading from `../../config/settings.env` |
+| `recommendation-engine.sh` | Quality-based recommendation engine for skill forge prioritization |
 | `skill-detector.sh` | Lazy detection - identifies skill file changes on Write/Edit |
 | `statistics.sh` | Statistical functions: mean, stddev, 95% CI, CI separation check |
 | `storage-local.sh` | Local file storage backend for skill metrics |

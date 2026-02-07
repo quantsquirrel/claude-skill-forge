@@ -1,5 +1,5 @@
 ---
-name: skill-forge:evaluator
+name: evaluator
 description: Evaluate skill quality through structured scoring. Assesses discoverability, clarity, completeness, and testability without making improvement suggestions.
 allowed-tools: Read, Grep, Glob
 user-invocable: false
@@ -138,7 +138,7 @@ user-invocable: false
 
 ```json
 {
-  "skill_name": "skill-forge:example",
+  "skill_name": "forge:example",
   "evaluated_at": "2025-01-28T12:34:56Z",
   "total_score": 78,
   "breakdown": {
@@ -213,7 +213,7 @@ user-invocable: false
 Task(
   subagent_type="oh-my-claudecode:critic",
   model="opus",
-  skills=["skill-forge:evaluator"],
+  skills=["forge:evaluator"],
   prompt="""
   다음 스킬을 평가해주세요:
 

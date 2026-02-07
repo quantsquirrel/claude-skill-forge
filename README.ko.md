@@ -60,7 +60,7 @@ git clone https://github.com/quantsquirrel/claude-forge-smith.git \
   ~/.claude/plugins/local/skill-forge
 
 # 불꽃 점화
-/skill-forge:forge --scan
+/forge:forge --scan
 ```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -101,7 +101,7 @@ get_upgrade_mode "my-skill"  # 반환: TDD_FIT 또는 HEURISTIC
 ╠══════════════════════════════════════════════════════════════╣
 ║ 무기                 │ 타격수  │ 열기   │ 방식       │ 등급  ║
 ╠══════════════════════╪═════════╪════════╪════════════╪═══════╣
-║ skill-forge:forge    │    45   │ ▲ +20% │ TDD_FIT    │ MED   ║
+║ forge:forge    │    45   │ ▲ +20% │ TDD_FIT    │ MED   ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
@@ -246,10 +246,10 @@ flowchart LR
 
 | 명령어 | 동작 |
 |--------|------|
-| `/skill-forge:forge --scan` | 🔍 재단조 가능한 스킬 탐색 |
-| `/skill-forge:forge <skill>` | ⚡ 특정 스킬 재단조 |
-| `/skill-forge:forge --history` | 📜 단조 연대기 보기 |
-| `/skill-forge:forge --watch` | 👁️ 대장간 모니터링 |
+| `/forge:forge --scan` | 🔍 재단조 가능한 스킬 탐색 |
+| `/forge:forge <skill>` | ⚡ 특정 스킬 재단조 |
+| `/forge:forge --history` | 📜 단조 연대기 보기 |
+| `/forge:forge --watch` | 👁️ 대장간 모니터링 |
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

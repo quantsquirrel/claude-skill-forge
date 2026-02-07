@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "forge",
+  "description": "TDD-based skill auto-upgrade plugin for Claude Code",
+  "owner": {
+    "name": "quantsquirrel"
+  },
+  "plugins": [
+    {
+      "name": "forge",
+      "description": "TDD-powered automatic skill evolution with statistical validation",
+      "version": "1.0.0",
+      "author": {
+        "name": "quantsquirrel"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/quantsquirrel/claude-forge-smith",
+      "tags": ["skill", "tdd", "evaluation", "auto-upgrade", "forge"]
+    }
+  ]
+}

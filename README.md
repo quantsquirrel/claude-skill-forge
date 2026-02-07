@@ -82,7 +82,7 @@ git clone https://github.com/quantsquirrel/claude-forge-smith.git \
   ~/.claude/plugins/local/skill-forge
 
 # Ignite the flames
-/skill-forge:forge --scan
+/forge:forge --scan
 ```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -126,7 +126,7 @@ Output:
 ║ Skill                  │ Type     │ Score │ Grade    │ Priority      ║
 ╠════════════════════════╪══════════╪═══════╪══════════╪═══════════════╣
 ║ omc:git-master         │ silent   │   45  │ C        │ [HIGH] ⚡     ║
-║ skill-forge:forge      │ explicit │   90  │ A        │ [READY] ✓     ║
+║ forge:forge      │ explicit │   90  │ A        │ [READY] ✓     ║
 ╚════════════════════════╧══════════╧═══════╧══════════╧═══════════════╝
 ```
 
@@ -305,12 +305,12 @@ No weapon leaves the forge untested. No master version is ever corrupted.
 
 | Command | Action |
 |---------|--------|
-| `/skill-forge:forge --scan` | 🔍 Scout for skills ready to reforge |
-| `/skill-forge:forge <skill>` | ⚡ Reforge a specific skill |
-| `/skill-forge:forge --history` | 📜 View forging chronicles |
-| `/skill-forge:forge --watch` | 👁️ Monitor the forge |
-| `/skill-forge:monitor` | 📊 Quality dashboard |
-| `/skill-forge:visualize` | 🎮 RPG-style skill inventory |
+| `/forge:forge --scan` | 🔍 Scout for skills ready to reforge |
+| `/forge:forge <skill>` | ⚡ Reforge a specific skill |
+| `/forge:forge --history` | 📜 View forging chronicles |
+| `/forge:forge --watch` | 👁️ Monitor the forge |
+| `/forge:monitor` | 📊 Quality dashboard |
+| `/forge:visualize` | 🎮 RPG-style skill inventory |
 
 ### 💡 Argument Hints (v1.0)
 

@@ -3,7 +3,7 @@
 ## 1. Scan for Upgradeable Skills
 
 ```bash
-/skill-forge:forge --scan
+/forge:forge --scan
 ```
 
 Output:
@@ -15,13 +15,13 @@ Found 3 upgradeable skills:
   ✅ researcher  (score: 68, tests: 3)
   ⏭️ planner    (skipped: no tests)
 
-Run `/skill-forge:forge <skill>` to upgrade.
+Run `/forge:forge <skill>` to upgrade.
 ```
 
 ## 2. Upgrade a Specific Skill
 
 ```bash
-/skill-forge:forge executor
+/forge:forge executor
 ```
 
 Output:
@@ -48,7 +48,7 @@ Baseline: 72 (CI: [69, 75])
 ## 3. View Upgrade History
 
 ```bash
-/skill-forge:forge --history
+/forge:forge --history
 ```
 
 Output:

@@ -25,7 +25,7 @@ Stores baseline evaluation scores for skills before and after upgrades. Each JSO
 
 ```json
 {
-  "skill_name": "skill-forge:skill-name",
+  "skill_name": "forge:skill-name",
   "version": "vX.Y",
   "bootstrapping": {
     "baseline": { "scores": [], "mean": 0, "stddev": 0, "ci": [] },

@@ -1,5 +1,5 @@
 <!-- Parent: ../AGENTS.md -->
-<!-- Generated: 2026-01-31 | Updated: 2026-01-31 -->
+<!-- Generated: 2026-01-31 | Updated: 2026-02-08 -->
 
 # skills
 
@@ -12,6 +12,7 @@ Skill definitions directory. Each subdirectory contains a complete skill with SK
 | Directory | Purpose |
 |-----------|---------|
 | `forge/` | Main upgrade skill - TDD evaluation and improvement (see `forge/AGENTS.md`) |
+| `monitor/` | Forge monitor dashboard showing skill quality scores and priorities (see `monitor/AGENTS.md`) |
 | `visualize/` | Skill stats visualization and dashboard (see `visualize/AGENTS.md`) |
 | `writing-skills/` | TDD methodology guide for skill creation (see `writing-skills/AGENTS.md`) |
 
@@ -33,7 +34,7 @@ Skill definitions directory. Each subdirectory contains a complete skill with SK
 
 ```yaml
 ---
-name: skill-forge:skill-name
+name: forge:skill-name
 description: Use when [trigger condition]. [Brief purpose].
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task
 user-invocable: true

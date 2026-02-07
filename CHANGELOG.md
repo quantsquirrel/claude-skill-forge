@@ -13,7 +13,7 @@ See [GitHub Issues](https://github.com/quantsquirrel/claude-forge-smith/issues) 
 
 ### Added
 - **Hybrid Upgrade Mode**: Heuristic-based upgrades for skills without tests / 테스트 없는 스킬도 휴리스틱 기반으로 업그레이드 가능
-- **Heuristic Evaluator**: Skill evaluation through usage patterns and structural analysis / 사용량 패턴과 구조 분석으로 스킬 평가 (`skill-forge:heuristic-evaluator`)
+- **Heuristic Evaluator**: Skill evaluation through usage patterns and structural analysis / 사용량 패턴과 구조 분석으로 스킬 평가 (`forge:heuristic-evaluator`)
 - **Skill Monitor**: Usage dashboard and upgrade recommendations / 사용량 대시보드 및 업그레이드 추천 (`/monitor`)
 - **Enhanced Grade System**: Extended grading up to SSS + Modifier bonuses / SSS까지 확장된 등급 + Modifier 보너스
 - **n=5 Precision Mode**: High-precision statistical verification with `--precision=high` or `-n5` / 고정밀 통계 검증

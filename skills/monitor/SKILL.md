@@ -1,5 +1,5 @@
 ---
-name: skill-forge:monitor
+name: monitor
 description: Use when you want to see skill usage trends, identify underused skills, or get upgrade recommendations. Triggers on 스킬 모니터링, 사용량 분석, 추천, /monitor, skill monitor, usage dashboard
 argument-hint: [--priority=HIGH|MED|LOW (default: all)] [--type=explicit|silent|all (default: all)]
 allowed-tools: Read, Glob, Bash
@@ -100,7 +100,7 @@ USAGE_TREND=$(get_usage_trend "$skill_name")
 ║ Skill                  │ Type     │ Score │ Grade    │ Priority      ║
 ╠════════════════════════╪══════════╪═══════╪══════════╪═══════════════╣
 ║ omc:git-master         │ silent   │   45  │ C        │ [HIGH] ⚡     ║
-║ skill-forge:forge      │ explicit │   72  │ B        │ [LOW]         ║
+║ forge:forge      │ explicit │   72  │ B        │ [LOW]         ║
 ║ omc:analyze            │ explicit │   85  │ A        │ [READY] ✓     ║
 ╚════════════════════════╧══════════╧═══════╧══════════╧═══════════════╝
 
@@ -114,11 +114,11 @@ USAGE_TREND=$(get_usage_trend "$skill_name")
 ║ 2. [MED] example-skill (explicit, score: 55)                          ║
 ║    → Missing: Quick Reference table                                   ║
 ║                                                                       ║
-║ 3. [LOW] skill-forge:forge (explicit, score: 72)                      ║
+║ 3. [LOW] forge:forge (explicit, score: 72)                      ║
 ║    → Suggestion: Add more examples                                    ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
-Run `/skill-forge:forge <skill-name>` to upgrade.
+Run `/forge:forge <skill-name>` to upgrade.
 ```
 
 ## Type-Specific Insights

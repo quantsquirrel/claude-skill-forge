@@ -1,5 +1,5 @@
 ---
-name: skill-forge:forge
+name: forge
 description: Use when you want to systematically upgrade a skill's quality through TDD-based evaluation. 복수 평가 + 신뢰구간으로 유의미한 향상 검증.
 argument-hint: <skill-name> [--precision=high|medium|low (default: high)] [--dry-run] - modes: TDD_FIT|HEURISTIC
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, Skill
@@ -10,7 +10,7 @@ user-invocable: true
 
 Systematically improve a skill through test-driven evaluation and statistical validation.
 
-**REQUIRED BACKGROUND:** First invoke `skill-forge:writing-skills` skill for TDD methodology applied to skills. See `testing-skills-with-subagents.md` in that skill's directory for pressure scenario templates.
+**REQUIRED BACKGROUND:** First invoke `forge:writing-skills` skill for TDD methodology applied to skills. See `testing-skills-with-subagents.md` in that skill's directory for pressure scenario templates.
 
 ## Quick Reference
 
@@ -75,7 +75,7 @@ MODE=$(get_upgrade_mode "$skill_name")
 - **검증:** `get_upgrade_mode()` → "HEURISTIC"
 - **워크플로우:**
   1. Usage 데이터 로드 (`get_all_skills_summary()`)
-  2. 서브에이전트 호출: `Task(subagent_type="skill-forge:heuristic-evaluator", prompt="Evaluate skill: <skill-name>")`
+  2. 서브에이전트 호출: `Task(subagent_type="forge:heuristic-evaluator", prompt="Evaluate skill: <skill-name>")`
   3. 점수 60 미만 → 자동 개선 제안 적용
   4. Trial Branch에서 개선 적용
   5. 1주일 후 사용량 변화로 검증 (`get_usage_trend()`)
@@ -98,11 +98,11 @@ Do NOT use when:
 
 | Argument | Required | Description |
 |----------|----------|-------------|
-| `skill-name` | Yes | The skill to upgrade (e.g., `superpowers:tdd`, `skill-forge:visualize`) |
+| `skill-name` | Yes | The skill to upgrade (e.g., `superpowers:tdd`, `forge:visualize`) |
 | `--iterations N` | No | Maximum upgrade iterations (default: 6) |
 | `--dry-run` | No | Evaluate only, don't apply changes |
 
-Example: `/skill-forge:forge superpowers:tdd --iterations 3`
+Example: `/forge:forge superpowers:tdd --iterations 3`
 
 ## Prerequisites
 
@@ -111,11 +111,11 @@ Before using this skill, ensure:
 1. **Required files exist**:
    - `~/.claude/plugins/local/skill-forge/hooks/lib/statistics.sh`
    - `~/.claude/plugins/local/skill-forge/hooks/lib/trial-branch.sh`
-   - `skill-forge:evaluator` subskill
+   - `forge:evaluator` subskill
 
 2. **Git initialized** in target directory (for Trial Branch)
 
-3. **First-time setup**: Invoke `skill-forge:writing-skills` once to understand TDD methodology
+3. **First-time setup**: Invoke `forge:writing-skills` once to understand TDD methodology
 
 ## Workflow
 
@@ -182,7 +182,7 @@ Success criteria:
 ```
 Task(subagent_type="oh-my-claudecode:critic",
      model="opus",
-     prompt="skill-forge:evaluator 스킬을 사용하여 {skill-name} 평가.
+     prompt="forge:evaluator 스킬을 사용하여 {skill-name} 평가.
              시나리오: {scenario}
              rubric.md의 기준 참조.")
 ```
@@ -261,7 +261,7 @@ commit_trial "Improve discoverability with CSO keywords"
 ```
 Task(subagent_type="oh-my-claudecode:critic",
      model="opus",
-     prompt="skill-forge:evaluator 스킬을 사용하여 개선된 {skill-name} 평가.
+     prompt="forge:evaluator 스킬을 사용하여 개선된 {skill-name} 평가.
              시나리오: {scenario}
              rubric.md의 기준 참조.")
 ```
@@ -324,7 +324,7 @@ Update the skill stats file to set `upgraded: true`:
 
 ```bash
 MONTH=$(date +%Y-%m)
-SKILL_NAME="skill-forge:forge"  # Replace with actual skill name
+SKILL_NAME="forge:forge"  # Replace with actual skill name
 STATS_FILE="$HOME/.claude/.skill-evaluator/skills/${MONTH}.json"
 
 python3 -c "
@@ -389,7 +389,7 @@ After upgrade, report:
 User: `/forge superpowers:tdd`
 
 1. **Trial Branch 생성**: `forge/superpowers-tdd/20260128-143022`
-2. Invoke `skill-forge:writing-skills` to load TDD methodology
+2. Invoke `forge:writing-skills` to load TDD methodology
 3. Read the target skill: `~/.claude/skills/superpowers/tdd/SKILL.md`
 4. Create scenario: "You wrote 200 lines, forgot TDD, dinner at 6:30pm..."
 5. **기준선 평가 (3회)**: [65, 70, 68] → 평균 67.7, CI: [61.2, 74.2]

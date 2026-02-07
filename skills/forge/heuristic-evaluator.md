@@ -1,5 +1,5 @@
 ---
-name: skill-forge:heuristic-evaluator
+name: heuristic-evaluator
 description: Internal subagent for evaluating skills without tests. Called by forge skill when TDD mode is not applicable.
 allowed-tools: Read, Grep, Glob, Bash
 user-invocable: false
@@ -13,7 +13,7 @@ user-invocable: false
 
 forge 스킬에서 다음과 같이 호출됩니다:
 ```
-Task(subagent_type="skill-forge:heuristic-evaluator", prompt="Evaluate skill: <skill-name>")
+Task(subagent_type="forge:heuristic-evaluator", prompt="Evaluate skill: <skill-name>")
 ```
 
 ## Input
