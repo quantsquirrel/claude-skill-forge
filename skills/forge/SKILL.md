@@ -124,7 +124,7 @@ Before using this skill, ensure:
 스킬 변경을 격리된 브랜치에서 진행합니다.
 
 ```bash
-source ~/.claude/plugins/local/skill-forge/hooks/lib/trial-branch.sh
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/trial-branch.sh"
 
 # 현재 브랜치 저장 후 Trial Branch 생성
 ORIGINAL=$(git branch --show-current)
@@ -199,7 +199,7 @@ echo "82" >> baseline-scores.txt
 **신뢰구간 계산**:
 
 ```bash
-source ~/.claude/plugins/local/skill-forge/hooks/lib/statistics.sh
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/statistics.sh"
 
 # 기준선 평균 및 95% CI
 BASELINE_MEAN=$(calc_mean baseline-scores.txt)
@@ -249,7 +249,7 @@ Edit the skill with identified improvements:
 **Trial Branch에서 커밋**:
 
 ```bash
-source ~/.claude/plugins/local/skill-forge/hooks/lib/trial-branch.sh
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/trial-branch.sh"
 
 commit_trial "Improve discoverability with CSO keywords"
 ```
@@ -284,7 +284,7 @@ echo "개선 후: 평균=$IMPROVED_MEAN, CI=[$IMPROVED_LOWER, $IMPROVED_UPPER]"
 **신뢰구간이 분리되면 유의미한 향상**으로 판단:
 
 ```bash
-source ~/.claude/plugins/local/skill-forge/hooks/lib/statistics.sh
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/statistics.sh"
 
 # 기준선 CI 상한 < 개선 CI 하한 확인
 if ci_separated "$BASELINE_UPPER" "$IMPROVED_LOWER"; then
@@ -305,7 +305,7 @@ fi
 **성공 (신뢰구간 분리됨)**:
 
 ```bash
-source ~/.claude/plugins/local/skill-forge/hooks/lib/trial-branch.sh
+source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/trial-branch.sh"
 
 merge_trial_success "$ORIGINAL" "$TRIAL"
 # → Trial Branch를 원본에 병합 후 삭제

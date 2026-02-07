@@ -1,6 +1,8 @@
 #!/bin/bash
 # SessionStart hook - 세션 시작 시 초기화
 
+set -euo pipefail
+
 # 공통 라이브러리 로드
 source "$(dirname "$0")/lib/common.sh"
 

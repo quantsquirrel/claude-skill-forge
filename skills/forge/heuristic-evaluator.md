@@ -33,7 +33,7 @@ SKILL_TYPE=$(get_skill_type "$skill_name")
 
 | 유형 | 설명 | 예시 |
 |------|------|------|
-| **explicit** | 사용자가 `/명령어`로 명시적 호출 | synod, forge, research |
+| **explicit** | 사용자가 `/명령어`로 명시적 호출 | forge, monitor, visualize |
 | **silent** | 상황에 맞으면 자동 트리거 | git-master, frontend-ui-ux |
 
 ## Evaluation Criteria by Type

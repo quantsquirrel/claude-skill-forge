@@ -6,18 +6,21 @@ SKILLS_DIR="$STORAGE_DIR/skills"
 
 # 월별 스킬 파일 경로
 get_month_file() {
-  local month=$(date +%Y-%m)
+  local month
+  month=$(date +%Y-%m)
   echo "$SKILLS_DIR/$month.json"
 }
 
 # 월별 파일 초기화
 storage_init_month() {
-  local month_file=$(get_month_file)
+  local month_file
+  month_file=$(get_month_file)
 
   mkdir -p "$SKILLS_DIR"
 
   if [ ! -f "$month_file" ]; then
-    local month=$(date +%Y-%m)
+    local month
+    month=$(date +%Y-%m)
     cat > "$month_file" << EOF
 {
   "month": "$month",
@@ -28,6 +31,26 @@ EOF
   fi
 }
 
+# Initialize session (no-op for local storage; required by session-start.sh)
+storage_init_session() {
+    local session_id="${1:-}"
+    local cwd="${2:-}"
+    debug_log "Session initialized (local): $session_id in $cwd"
+}
+
+# Record user correction (required by user-prompt.sh)
+storage_record_correction() {
+    local session_id="${1:-}"
+    debug_log "User correction recorded (local): $session_id"
+}
+
+# Finalize session (required by session-stop.sh)
+storage_finalize_session() {
+    local session_id="${1:-}"
+    local status="${2:-unknown}"
+    debug_log "Session finalized (local): $session_id with status: $status"
+}
+
 # Skill 사용 기록
 storage_record_skill() {
   local skill_name="$1"
@@ -36,7 +59,8 @@ storage_record_skill() {
 
   storage_init_month
 
-  local month_file=$(get_month_file)
+  local month_file
+  month_file=$(get_month_file)
 
   # JSON 파일 읽기
   if [ ! -f "$month_file" ]; then
@@ -50,33 +74,37 @@ storage_record_skill() {
   fi
 
   # Python 스크립트를 사용하여 JSON 업데이트 (sed보다 안전)
-  python3 << PYTHON_SCRIPT
+  MONTH_FILE="$month_file" SKILL_NAME="$skill_name" PY_HAS_TEST="$py_has_test" TOKENS="$tokens" python3 << 'PYTHON_SCRIPT'
 import json
 import sys
+import os
+
+month_file = os.environ["MONTH_FILE"]
+skill_name = os.environ["SKILL_NAME"]
+py_has_test = os.environ["PY_HAS_TEST"] == "True"
+tokens = int(os.environ["TOKENS"])
 
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
 
     if "skills" not in data:
         data["skills"] = {}
 
-    skill_name = "$skill_name"
-
     if skill_name in data["skills"]:
         # 기존 스킬 업데이트 (증분)
         data["skills"][skill_name]["usageCount"] = data["skills"][skill_name].get("usageCount", 0) + 1
-        data["skills"][skill_name]["totalTokens"] = data["skills"][skill_name].get("totalTokens", 0) + $tokens
-        data["skills"][skill_name]["hasTestCode"] = $py_has_test
+        data["skills"][skill_name]["totalTokens"] = data["skills"][skill_name].get("totalTokens", 0) + tokens
+        data["skills"][skill_name]["hasTestCode"] = py_has_test
     else:
         # 새로운 스킬 추가
         data["skills"][skill_name] = {
             "usageCount": 1,
-            "totalTokens": $tokens,
-            "hasTestCode": $py_has_test
+            "totalTokens": tokens,
+            "hasTestCode": py_has_test
         }
 
-    with open("$month_file", "w") as f:
+    with open(month_file, "w") as f:
         json.dump(data, f, indent=2)
 except Exception as e:
     print(f"Error updating JSON: {e}", file=sys.stderr)
@@ -91,11 +119,11 @@ check_skill_has_test() {
   local skill_name="$1"
 
   # Skill 경로 추정
-  local skill_dir="$HOME/.claude/skills/${skill_name}"
+  local skill_dir="${CLAUDE_ROOT:-$HOME/.claude}/skills/${skill_name}"
 
   # Plugin 경로도 확인
   if [ -z "$(find "$skill_dir" -name "*test*" -o -name "*spec*" 2>/dev/null | head -1)" ]; then
-    skill_dir="$HOME/.claude/plugins/${skill_name}"
+    skill_dir="${CLAUDE_ROOT:-$HOME/.claude}/plugins/${skill_name}"
   fi
 
   # Test 파일 검색
@@ -120,30 +148,37 @@ check_skill_has_test() {
 get_usage_trend() {
     local skill_name="$1"
 
-    local current_month=$(date +%Y-%m)
-    local prev_month=$(date -v-1m +%Y-%m 2>/dev/null || date -d "1 month ago" +%Y-%m)
+    local current_month
+    current_month=$(date +%Y-%m)
+    local prev_month
+    prev_month=$(date -v-1m +%Y-%m 2>/dev/null || date -d "1 month ago" +%Y-%m)
 
     local current_file="$SKILLS_DIR/$current_month.json"
     local prev_file="$SKILLS_DIR/$prev_month.json"
 
-    python3 << PYTHON_SCRIPT
+    CURRENT_FILE="$current_file" PREV_FILE="$prev_file" SKILL_NAME="$skill_name" python3 << 'PYTHON_SCRIPT'
 import json
+import os
+
+current_file = os.environ["CURRENT_FILE"]
+prev_file = os.environ["PREV_FILE"]
+skill_name = os.environ["SKILL_NAME"]
 
 current_usage = 0
 prev_usage = 0
 
 try:
-    with open("$current_file", "r") as f:
+    with open(current_file, "r") as f:
         data = json.load(f)
-        current_usage = data.get("skills", {}).get("$skill_name", {}).get("usageCount", 0)
-except:
+        current_usage = data.get("skills", {}).get(skill_name, {}).get("usageCount", 0)
+except Exception:
     pass
 
 try:
-    with open("$prev_file", "r") as f:
+    with open(prev_file, "r") as f:
         data = json.load(f)
-        prev_usage = data.get("skills", {}).get("$skill_name", {}).get("usageCount", 0)
-except:
+        prev_usage = data.get("skills", {}).get(skill_name, {}).get("usageCount", 0)
+except Exception:
     pass
 
 if prev_usage == 0:
@@ -165,21 +200,27 @@ PYTHON_SCRIPT
 # Output: tokens per usage (integer)
 get_token_efficiency() {
     local skill_name="$1"
-    local month_file=$(get_month_file)
+    local month_file
+    month_file=$(get_month_file)
 
-    python3 << PYTHON_SCRIPT
+    MONTH_FILE="$month_file" SKILL_NAME="$skill_name" python3 << 'PYTHON_SCRIPT'
 import json
+import os
+
+month_file = os.environ["MONTH_FILE"]
+skill_name = os.environ["SKILL_NAME"]
+
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
-    skill = data.get("skills", {}).get("$skill_name", {})
+    skill = data.get("skills", {}).get(skill_name, {})
     usage = skill.get("usageCount", 0)
     tokens = skill.get("totalTokens", 0)
     if usage > 0:
         print(int(tokens / usage))
     else:
         print(0)
-except:
+except Exception:
     print(0)
 PYTHON_SCRIPT
 }
@@ -188,15 +229,20 @@ PYTHON_SCRIPT
 # Usage: get_all_skills_summary
 # Output: JSON object
 get_all_skills_summary() {
-    local month_file=$(get_month_file)
+    local month_file
+    month_file=$(get_month_file)
 
-    python3 << PYTHON_SCRIPT
+    MONTH_FILE="$month_file" python3 << 'PYTHON_SCRIPT'
 import json
+import os
+
+month_file = os.environ["MONTH_FILE"]
+
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
     print(json.dumps(data.get("skills", {}), indent=2))
-except:
+except Exception:
     print("{}")
 PYTHON_SCRIPT
 }
@@ -212,7 +258,8 @@ get_upgrade_mode() {
     local skill_name="$1"
 
     # 기존 함수 재사용
-    local has_test=$(check_skill_has_test "$skill_name")
+    local has_test
+    has_test=$(check_skill_has_test "$skill_name")
 
     if [ "$has_test" = "true" ]; then
         echo "TDD_FIT"
@@ -229,10 +276,10 @@ find_skill_path() {
 
     # 검색 순서: skills/ -> commands/ -> ~/.claude/skills/ -> ~/.claude/plugins/
     local search_paths=(
-        "${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/skill-forge}/skills"
-        "${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/skill-forge}/commands"
-        "$HOME/.claude/skills"
-        "$HOME/.claude/plugins"
+        "${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/local/skill-forge}/skills"
+        "${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/local/skill-forge}/commands"
+        "${CLAUDE_ROOT:-$HOME/.claude}/skills"
+        "${CLAUDE_ROOT:-$HOME/.claude}/plugins"
     )
 
     for base_path in "${search_paths[@]}"; do
@@ -262,7 +309,7 @@ find_skill_path() {
 # Usage: get_skill_type "skill-name" "skill_file_path"
 # Output: "explicit" | "silent"
 #
-# explicit: 사용자가 명시적으로 /명령어로 호출 (예: synod, forge)
+# explicit: 사용자가 명시적으로 /명령어로 호출 (예: forge, monitor)
 # silent: 상황에 맞으면 자동으로 호출 (예: git-master, frontend-ui-ux)
 get_skill_type() {
     local skill_name="$1"
@@ -270,7 +317,8 @@ get_skill_type() {
 
     # 스킬 파일이 없으면 경로 찾기
     if [ -z "$skill_file" ] || [ ! -f "$skill_file" ]; then
-        local skill_dir=$(find_skill_path "$skill_name")
+        local skill_dir
+        skill_dir=$(find_skill_path "$skill_name")
         if [ -n "$skill_dir" ]; then
             skill_file="$skill_dir/SKILL.md"
         fi
@@ -281,10 +329,13 @@ get_skill_type() {
         return 1
     fi
 
-    python3 << PYTHON_SCRIPT
+    SKILL_FILE="$skill_file" python3 << 'PYTHON_SCRIPT'
 import re
+import os
 
-with open("$skill_file", "r") as f:
+skill_file = os.environ["SKILL_FILE"]
+
+with open(skill_file, "r") as f:
     content = f.read()
 
 # Extract frontmatter
@@ -332,7 +383,8 @@ get_skill_quality_score() {
 
     # 스킬 파일이 없으면 경로 찾기
     if [ -z "$skill_file" ] || [ ! -f "$skill_file" ]; then
-        local skill_dir=$(find_skill_path "$skill_name")
+        local skill_dir
+        skill_dir=$(find_skill_path "$skill_name")
         if [ -n "$skill_dir" ]; then
             skill_file="$skill_dir/SKILL.md"
         fi
@@ -343,16 +395,20 @@ get_skill_quality_score() {
         return 1
     fi
 
-    local skill_type=$(get_skill_type "$skill_name" "$skill_file")
+    local skill_type
+    skill_type=$(get_skill_type "$skill_name" "$skill_file")
 
-    python3 << PYTHON_SCRIPT
+    SKILL_FILE="$skill_file" SKILL_TYPE="$skill_type" SKILL_NAME="$skill_name" python3 << 'PYTHON_SCRIPT'
 import re
 import json
+import os
 
-with open("$skill_file", "r") as f:
+skill_file = os.environ["SKILL_FILE"]
+skill_type = os.environ["SKILL_TYPE"]
+skill_name_env = os.environ["SKILL_NAME"]
+
+with open(skill_file, "r") as f:
     content = f.read()
-
-skill_type = "$skill_type"
 score = 0
 breakdown = {}
 
@@ -427,7 +483,7 @@ else:
 score = sum(breakdown.values())
 
 result = {
-    "skill_name": "$skill_name",
+    "skill_name": skill_name_env,
     "skill_type": skill_type,
     "score": score,
     "breakdown": breakdown,

@@ -11,6 +11,7 @@ fi
 load_config() {
   local config_file="$PLUGIN_ROOT/config/settings.env"
   if [ -f "$config_file" ]; then
+    # shellcheck source=/dev/null
     source "$config_file"
   fi
 }

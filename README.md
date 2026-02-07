@@ -11,7 +11,7 @@
 
 ### ⚔️ Forge your skills into legendary weapons
 
-[![Version](https://img.shields.io/badge/v1.1-FFB800?style=flat-square&logoColor=1A0A00)](https://github.com/quantsquirrel/claude-skill-forge)
+[![Version](https://img.shields.io/badge/v1.0-FFB800?style=flat-square&logoColor=1A0A00)](https://github.com/quantsquirrel/claude-skill-forge)
 [![Tests](https://img.shields.io/badge/tests-passing-FF6B00?style=flat-square)](https://github.com/quantsquirrel/claude-skill-forge)
 [![License](https://img.shields.io/badge/MIT-FFD700?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/quantsquirrel/claude-skill-forge?style=flat-square&color=FF6B00)](https://github.com/quantsquirrel/claude-skill-forge)
@@ -49,6 +49,28 @@ graph LR
 ```
 
 **The Forge never rests** — Each skill is heated in analysis, struck with improvements, tempered by tests, and emerges stronger.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 📋 Prerequisites
+
+Before firing up the forge, ensure you have the required tools:
+
+| Requirement | Version | Check |
+|-------------|---------|-------|
+| Bash | 4.0+ | `bash --version` |
+| Git | 2.0+ | `git --version` |
+| Python 3 | 3.6+ | `python3 --version` |
+| bc | any | `which bc` |
+| jq | 1.6+ | `jq --version` |
+| Claude Code CLI | latest | `claude --version` |
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `CLAUDE_PLUGIN_ROOT` | `~/.claude/plugins/local/skill-forge` | Plugin installation path |
+| `FORGE_EVALUATOR_CMD` | (built-in) | Custom evaluator script path |
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -108,7 +130,7 @@ Output:
 ╚════════════════════════╧══════════╧═══════╧══════════╧═══════════════╝
 ```
 
-### ⚔️ Skill Type Detection (v1.1)
+### ⚔️ Skill Type Detection (v1.0)
 
 Skills are classified by how they're invoked:
 
@@ -123,7 +145,7 @@ source hooks/lib/storage-local.sh
 get_skill_type "my-skill"  # Returns: explicit | silent
 ```
 
-### 📈 Quality-Based Recommendations (v1.1)
+### 📈 Quality-Based Recommendations (v1.0)
 
 **Core Principle: Usage ≠ Quality**
 
@@ -290,7 +312,7 @@ No weapon leaves the forge untested. No master version is ever corrupted.
 | `/skill-forge:monitor` | 📊 Quality dashboard |
 | `/skill-forge:visualize` | 🎮 RPG-style skill inventory |
 
-### 💡 Argument Hints (v1.1)
+### 💡 Argument Hints (v1.0)
 
 When typing a slash command, you'll see available modes:
 
@@ -301,6 +323,83 @@ When typing a slash command, you'll see available modes:
 ```
 
 Add `argument-hint` to your skill's frontmatter to enable this feature.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ⚙️ Configuration
+
+Forge behavior can be customized via `config/settings.env`:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `STORAGE_MODE` | `local` | Storage backend (currently only local supported) |
+| `LOCAL_STORAGE_DIR` | `~/.claude/.skill-evaluator` | Local storage directory for skill data |
+| `SKILL_EVAL_DEBUG` | `false` | Enable debug logging to stderr |
+
+**Example:**
+```bash
+# Enable debug mode
+export SKILL_EVAL_DEBUG=true
+
+# Use custom storage location
+export LOCAL_STORAGE_DIR="$HOME/.my-forge-data"
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### `bc: command not found`
+```bash
+# macOS
+brew install bc
+
+# Ubuntu/Debian
+sudo apt-get install bc
+
+# Fedora/RHEL
+sudo dnf install bc
+```
+
+#### `jq: command not found`
+```bash
+# macOS
+brew install jq
+
+# Ubuntu/Debian
+sudo apt-get install jq
+
+# Fedora/RHEL
+sudo dnf install jq
+```
+
+#### `Permission denied` when running commands
+```bash
+# Make scripts executable
+cd ~/.claude/plugins/local/skill-forge
+chmod +x hooks/*.sh
+chmod +x bin/*
+```
+
+#### Plugin not detected by Claude Code
+1. Check installation path matches `CLAUDE_PLUGIN_ROOT`
+2. Verify `plugin.json` exists in the plugin root
+3. Restart Claude Code CLI
+4. Run `/help` to see if skill-forge commands appear
+
+#### Forge evaluations fail silently
+```bash
+# Enable debug logging
+export SKILL_EVAL_DEBUG=true
+
+# Check storage directory exists
+ls -la ~/.claude/.skill-evaluator
+
+# Verify evaluator script is executable
+ls -la ~/.claude/plugins/local/skill-forge/bin/skill-evaluator.py
+```
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -319,6 +418,6 @@ Add `argument-hint` to your skill's frontmatter to enable this feature.
 
 **Inspired by** [skill-up](https://github.com/BumgeunSong/skill-up)
 
-⚒️ **Forged with Claude Code** · 🔥 **MIT License** · ⚔️ **v1.1**
+⚒️ **Forged with Claude Code** · 🔥 **MIT License** · ⚔️ **v1.0**
 
 </div>

@@ -1,0 +1,29 @@
+name: PR Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install dependencies
+        run: sudo apt-get install -y bc jq
+      - name: Check CHANGELOG updated
+        run: |
+          if ! git diff --name-only origin/main...HEAD | grep -q "CHANGELOG.md"; then
+            echo "::warning::CHANGELOG.md not updated"
+          fi
+      - name: Run Tier 1 unit tests
+        run: |
+          bash tests/unit/statistics-unit.test.sh
+          bash tests/unit/storage-local-unit.test.sh
+          bash tests/unit/recommendation-engine-unit.test.sh
+      - name: Run Tier 2 integration tests
+        run: |
+          bash tests/integration/skill-up-integration.test.sh
+          bash tests/integration/hook-integration.test.sh

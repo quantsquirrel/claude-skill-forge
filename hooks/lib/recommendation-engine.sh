@@ -17,28 +17,42 @@ source "$SCRIPT_DIR/storage-local.sh"
 calculate_priority() {
     local skill_name="$1"
 
-    local trend=$(get_usage_trend "$skill_name")
-    local month_file=$(get_month_file)
+    local trend
+    trend=$(get_usage_trend "$skill_name")
+    local month_file
+    month_file=$(get_month_file)
 
     # 사용량 가져오기
-    local usage_count=$(python3 << PYTHON_SCRIPT
+    local usage_count
+    usage_count=$(MONTH_FILE="$month_file" SKILL_NAME="$skill_name" python3 << 'PYTHON_SCRIPT'
 import json
+import os
+
+month_file = os.environ["MONTH_FILE"]
+skill_name = os.environ["SKILL_NAME"]
+
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
-    print(data.get("skills", {}).get("$skill_name", {}).get("usageCount", 0))
-except:
+    print(data.get("skills", {}).get(skill_name, {}).get("usageCount", 0))
+except Exception:
     print(0)
 PYTHON_SCRIPT
 )
 
-    local upgraded=$(python3 << PYTHON_SCRIPT
+    local upgraded
+    upgraded=$(MONTH_FILE="$month_file" SKILL_NAME="$skill_name" python3 << 'PYTHON_SCRIPT'
 import json
+import os
+
+month_file = os.environ["MONTH_FILE"]
+skill_name = os.environ["SKILL_NAME"]
+
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
-    print(str(data.get("skills", {}).get("$skill_name", {}).get("upgraded", False)).lower())
-except:
+    print(str(data.get("skills", {}).get(skill_name, {}).get("upgraded", False)).lower())
+except Exception:
     print("false")
 PYTHON_SCRIPT
 )
@@ -73,19 +87,19 @@ priority_label() {
 # Usage: generate_recommendations
 # Output: JSON array sorted by priority
 generate_recommendations() {
-    local month_file=$(get_month_file)
+    local month_file
+    month_file=$(get_month_file)
 
-    python3 << PYTHON_SCRIPT
+    MONTH_FILE="$month_file" python3 << 'PYTHON_SCRIPT'
 import json
-import subprocess
 import os
 
-script_dir = os.path.dirname(os.path.abspath("$SCRIPT_DIR"))
+month_file = os.environ["MONTH_FILE"]
 
 try:
-    with open("$month_file", "r") as f:
+    with open(month_file, "r") as f:
         data = json.load(f)
-except:
+except Exception:
     print("[]")
     exit(0)
 
@@ -131,20 +145,21 @@ PYTHON_SCRIPT
 # ------------------------------------------------------------------------------
 # Usage: print_dashboard
 print_dashboard() {
-    local recommendations=$(generate_recommendations 2>/dev/null)
+    local recommendations
+    recommendations=$(generate_recommendations 2>/dev/null)
 
     echo "╔══════════════════════════════════════════════════════════════╗"
     echo "║                    Skill Forge Monitor                        ║"
     echo "╠══════════════════════════════════════════════════════════════╣"
 
     # Parse and print recommendations
-    echo "$recommendations" | python3 << 'PYTHON_SCRIPT'
+    RECOMMENDATIONS_JSON="$recommendations" python3 << 'PYTHON_SCRIPT'
 import json
-import sys
+import os
 
 try:
-    data = json.load(sys.stdin)
-except:
+    data = json.loads(os.environ.get("RECOMMENDATIONS_JSON", "[]"))
+except Exception:
     data = []
 
 if not data:

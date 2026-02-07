@@ -1,6 +1,8 @@
 #!/bin/bash
 # UserPromptSubmit hook - 사용자 프롬프트 분석
 
+set -euo pipefail
+
 # 공통 라이브러리 로드
 source "$(dirname "$0")/lib/common.sh"
 

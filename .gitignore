@@ -27,6 +27,11 @@ data/detections/
 *.temp
 *.log
 
+# Environment variables (secrets)
+.env
+.env.local
+.env.*.local
+
 # Node (if applicable)
 node_modules/
 
@@ -34,3 +39,13 @@ node_modules/
 __pycache__/
 *.pyc
 .venv/
+
+# Development handoffs (internal session notes)
+.claude/handoffs/
+
+# OMC synod sessions
+.omc/synod/
+
+# PR check scripts (contains repo-specific references)
+scripts/com.skillforge.prcheck.plist
+scripts/check-pr-status.sh

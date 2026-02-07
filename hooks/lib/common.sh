@@ -1,8 +1,10 @@
 #!/bin/bash
 # common.sh - 공통 유틸리티 및 storage 로더
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+CLAUDE_ROOT="$(cd "$PLUGIN_ROOT/../.." && pwd)"
 
 # 설정 로드
 source "$SCRIPT_DIR/config.sh"
@@ -63,28 +65,4 @@ get_time_ns() {
   else
     echo $(($(date +%s) * 1000000000))
   fi
-}
-
-# Test code 존재 여부 확인 (storage-local.sh에서 정의되지만 여기서도 선언)
-check_skill_has_test() {
-  local skill_name="$1"
-
-  # Skill 경로 추정
-  local skill_dir="$HOME/.claude/skills/${skill_name}"
-
-  # Plugin 경로도 확인
-  if [ -z "$(find "$skill_dir" -name "*test*" -o -name "*spec*" 2>/dev/null | head -1)" ]; then
-    skill_dir="$HOME/.claude/plugins/${skill_name}"
-  fi
-
-  # Test 파일 검색
-  if [ -d "$skill_dir" ]; then
-    if find "$skill_dir" -type f \( -name "*test*" -o -name "*spec*" \) 2>/dev/null | grep -q .; then
-      echo "true"
-      return 0
-    fi
-  fi
-
-  echo "false"
-  return 1
 }

@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-tier1:
+    name: "Tier 1: Unit Tests"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          if [ "$RUNNER_OS" = "Linux" ]; then
+            sudo apt-get install -y bc jq
+          fi
+      - name: Run unit tests
+        run: |
+          bash tests/unit/statistics-unit.test.sh
+          bash tests/unit/storage-local-unit.test.sh
+          bash tests/unit/recommendation-engine-unit.test.sh
+
+  test-tier2:
+    name: "Tier 2: Integration + Mock E2E"
+    needs: test-tier1
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          if [ "$RUNNER_OS" = "Linux" ]; then
+            sudo apt-get install -y bc jq
+          fi
+      - name: Run integration tests
+        run: bash tests/integration/skill-up-integration.test.sh
+      - name: Run hook integration tests
+        run: bash tests/integration/hook-integration.test.sh
+      - name: Run E2E tests (mock evaluator)
+        run: |
+          git config user.email "test@test.com"
+          git config user.name "Test"
+          export FORGE_EVALUATOR_CMD="tests/mocks/mock-evaluator.sh"
+          bash tests/e2e/trial-branch-e2e.test.sh
+          bash tests/e2e/forge-workflow-e2e.test.sh
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+      - name: Run ShellCheck
+        run: |
+          find hooks/ tests/ -name "*.sh" -exec shellcheck {} +

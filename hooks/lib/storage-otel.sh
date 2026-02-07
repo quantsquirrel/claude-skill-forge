@@ -67,7 +67,8 @@ send_metric() {
   local name="$1"
   local value="$2"
   local attributes="$3"
-  local time_ns=$(get_time_ns)
+  local time_ns
+  time_ns=$(get_time_ns)
 
   curl -s -X POST "${OTEL_ENDPOINT}/v1/metrics" \
     -H "Content-Type: application/json" \
@@ -103,11 +104,15 @@ send_metric() {
 
 storage_init_session() {
   local session_id="$1"
+  # shellcheck disable=SC2034
   local cwd="$2"
 
-  local trace_id=$(generate_trace_id)
-  local span_id=$(generate_span_id)
-  local start_time=$(get_time_ns)
+  local trace_id
+  trace_id=$(generate_trace_id)
+  local span_id
+  span_id=$(generate_span_id)
+  local start_time
+  start_time=$(get_time_ns)
 
   # 세션 컨텍스트 저장 (나중에 span에서 사용)
   mkdir -p "$STATE_DIR"
@@ -133,13 +138,19 @@ storage_record_tool() {
   [ ! -f "$ctx_file" ] && return
 
   # 컨텍스트 로드
-  local ctx=$(cat "$ctx_file")
-  local trace_id=$(echo "$ctx" | extract_json "traceId")
-  local parent_span_id=$(echo "$ctx" | extract_json "spanId")
+  local ctx
+  ctx=$(cat "$ctx_file")
+  local trace_id
+  trace_id=$(echo "$ctx" | extract_json "traceId")
+  local parent_span_id
+  parent_span_id=$(echo "$ctx" | extract_json "spanId")
 
-  local span_id=$(generate_span_id)
-  local end_time=$(get_time_ns)
-  local start_time=$((end_time - duration_ms * 1000000))
+  local span_id
+  span_id=$(generate_span_id)
+  local end_time
+  end_time=$(get_time_ns)
+  local start_time
+  start_time=$((end_time - duration_ms * 1000000))
 
   # Tool 사용 span 전송
   send_span "$trace_id" "$span_id" "tool.$tool_name" \
@@ -173,14 +184,20 @@ storage_finalize_session() {
   [ ! -f "$ctx_file" ] && return
 
   # 컨텍스트 로드
-  local ctx=$(cat "$ctx_file")
-  local trace_id=$(echo "$ctx" | extract_json "traceId")
-  local span_id=$(echo "$ctx" | extract_json "spanId")
-  local start_time=$(echo "$ctx" | extract_json_number "startTime")
-  local end_time=$(get_time_ns)
+  local ctx
+  ctx=$(cat "$ctx_file")
+  local trace_id
+  trace_id=$(echo "$ctx" | extract_json "traceId")
+  local span_id
+  span_id=$(echo "$ctx" | extract_json "spanId")
+  local start_time
+  start_time=$(echo "$ctx" | extract_json_number "startTime")
+  local end_time
+  end_time=$(get_time_ns)
 
   # 세션 종료 span 업데이트 (새 span으로 전송)
-  local end_span_id=$(generate_span_id)
+  local end_span_id
+  end_span_id=$(generate_span_id)
   send_span "$trace_id" "$end_span_id" "session.end" \
     "[
       {\"key\": \"session.id\", \"value\": {\"stringValue\": \"$session_id\"}},
@@ -189,7 +206,8 @@ storage_finalize_session() {
     "$end_time" "$end_time" "$span_id"
 
   # 세션 duration 메트릭
-  local duration_ms=$(( (end_time - start_time) / 1000000 ))
+  local duration_ms
+  duration_ms=$(( (end_time - start_time) / 1000000 ))
   send_metric "skill_evaluator.session.duration_ms" "$duration_ms" \
     "[{\"key\": \"session.status\", \"value\": {\"stringValue\": \"$status\"}}]"
 

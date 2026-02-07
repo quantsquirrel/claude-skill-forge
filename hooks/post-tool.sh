@@ -1,6 +1,8 @@
 #!/bin/bash
 # PostToolUse hook - Skill 사용 완료 기록
 
+set -euo pipefail
+
 # 공통 라이브러리 로드
 source "$(dirname "$0")/lib/common.sh"
 
@@ -25,7 +27,8 @@ fi
 
 if [ -n "$SKILL_NAME" ]; then
   # 시작 시간 로드
-  TEMP_FILE="$STATE_DIR/skill_$(echo "$SKILL_NAME" | sed 's/[^a-zA-Z0-9_-]/_/g').tmp"
+  SAFE_SKILL_NAME="${SKILL_NAME//[^a-zA-Z0-9_-]/_}"
+  TEMP_FILE="$STATE_DIR/skill_${SAFE_SKILL_NAME}.tmp"
   START_TIME=0
   if [ -f "$TEMP_FILE" ]; then
     START_TIME=$(cat "$TEMP_FILE" | cut -d'|' -f1)

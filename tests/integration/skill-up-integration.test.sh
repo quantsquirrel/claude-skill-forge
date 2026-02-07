@@ -51,7 +51,8 @@ test_usage_tracking() {
     storage_record_skill "test-skill" "2000" "false"
 
     # 조회 확인
-    local summary=$(get_all_skills_summary)
+    local summary
+    summary=$(get_all_skills_summary)
     if echo "$summary" | grep -q "test-skill"; then
         pass "Skill recorded in storage"
     else
@@ -59,7 +60,8 @@ test_usage_tracking() {
     fi
 
     # 사용량 확인 (2회 기록)
-    local usage=$(echo "$summary" | python3 -c "import json,sys; print(json.load(sys.stdin).get('test-skill',{}).get('usageCount',0))")
+    local usage
+    usage=$(echo "$summary" | python3 -c "import json,sys; print(json.load(sys.stdin).get('test-skill',{}).get('usageCount',0))")
     if [ "$usage" = "2" ]; then
         pass "Usage count incremented correctly (2)"
     else
@@ -74,7 +76,8 @@ test_trend_analysis() {
     echo ""
     echo "Test 2: Trend Analysis"
 
-    local trend=$(get_usage_trend "test-skill")
+    local trend
+    trend=$(get_usage_trend "test-skill")
     if [[ "$trend" =~ ^(positive|negative|stable)$ ]]; then
         pass "Trend returned valid value ($trend)"
     else
@@ -89,7 +92,8 @@ test_token_efficiency() {
     echo ""
     echo "Test 3: Token Efficiency"
 
-    local efficiency=$(get_token_efficiency "test-skill")
+    local efficiency
+    efficiency=$(get_token_efficiency "test-skill")
     # 3500 tokens / 2 usages = 1750
     if [[ "$efficiency" =~ ^[0-9]+$ ]]; then
         pass "Efficiency calculated: $efficiency tokens/usage"
@@ -105,7 +109,8 @@ test_upgrade_mode() {
     echo ""
     echo "Test 4: Upgrade Mode Detection"
 
-    local mode=$(get_upgrade_mode "test-skill")
+    local mode
+    mode=$(get_upgrade_mode "test-skill")
     if [[ "$mode" =~ ^(TDD_FIT|HEURISTIC)$ ]]; then
         pass "Mode detected: $mode"
     else
@@ -120,8 +125,10 @@ test_sample_size_option() {
     echo ""
     echo "Test 5: Sample Size Options"
 
-    local n_standard=$(get_recommended_sample_size "standard")
-    local n_high=$(get_recommended_sample_size "high")
+    local n_standard
+    n_standard=$(get_recommended_sample_size "standard")
+    local n_high
+    n_high=$(get_recommended_sample_size "high")
 
     if [ "$n_standard" = "3" ]; then
         pass "Standard sample size: 3"
@@ -143,8 +150,10 @@ test_ci_width_estimation() {
     echo ""
     echo "Test 6: CI Width Estimation"
 
-    local width_n3=$(estimate_ci_width 3.0 3)
-    local width_n5=$(estimate_ci_width 3.0 5)
+    local width_n3
+    width_n3=$(estimate_ci_width 3.0 3)
+    local width_n5
+    width_n5=$(estimate_ci_width 3.0 5)
 
     # n=5일 때 CI가 더 좁아야 함
     if (( $(echo "$width_n3 > $width_n5" | bc -l) )); then
@@ -162,7 +171,8 @@ test_tdd_regression() {
     echo "Test 7: TDD Regression (existing functions)"
 
     # calc_mean 테스트
-    local mean=$(calc_mean 82 85 79)
+    local mean
+    mean=$(calc_mean 82 85 79)
     if [[ "$mean" == "82.00" || "$mean" == "82.0" || "$mean" == "82" ]]; then
         pass "calc_mean works correctly"
     else
@@ -170,7 +180,8 @@ test_tdd_regression() {
     fi
 
     # calc_stddev 테스트
-    local stddev=$(calc_stddev "$mean" 82 85 79)
+    local stddev
+    stddev=$(calc_stddev "$mean" 82 85 79)
     if [[ "$stddev" =~ ^[0-9]+\.[0-9]+$ ]]; then
         pass "calc_stddev works correctly: $stddev"
     else
@@ -178,7 +189,7 @@ test_tdd_regression() {
     fi
 
     # calc_ci 테스트
-    local ci=($(calc_ci "$mean" "$stddev" 3))
+    local ci; mapfile -t ci < <(calc_ci "$mean" "$stddev" 3)
     if [ "${#ci[@]}" -eq 2 ]; then
         pass "calc_ci returns CI bounds: [${ci[0]}, ${ci[1]}]"
     else
@@ -194,7 +205,8 @@ test_find_skill_path() {
     echo "Test 8: Find Skill Path"
 
     # 존재하지 않는 스킬 - 빈 문자열 반환
-    local path=$(find_skill_path "nonexistent-skill-12345")
+    local path
+    path=$(find_skill_path "nonexistent-skill-12345")
     if [ -z "$path" ]; then
         pass "Returns empty for nonexistent skill"
     else

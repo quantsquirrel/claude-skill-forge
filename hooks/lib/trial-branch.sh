@@ -19,7 +19,7 @@ create_trial_branch() {
   fi
 
   # Generate timestamped branch name
-  local branch_name="${TRIAL_PREFIX}-${skill_name}-$(date +%Y%m%d%H%M%S)"
+  local branch_name; branch_name="${TRIAL_PREFIX}-${skill_name}-$(date +%Y%m%d%H%M%S)"
 
   # Create and checkout new branch
   git checkout -b "$branch_name"

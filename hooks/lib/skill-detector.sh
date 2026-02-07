@@ -80,11 +80,12 @@ handle_skill_detection() {
   local skill_name="$2"
 
   # 로그 디렉토리 확인
-  LOG_DIR="$HOME/.claude/plugins/local/skill-forge/data/detections"
+  LOG_DIR="${CLAUDE_PLUGIN_ROOT}/data/detections"
   mkdir -p "$LOG_DIR"
 
   # 감지 로그 기록
-  local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+  local timestamp
+  timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
   local log_entry="{\"timestamp\": \"$timestamp\", \"skill\": \"$skill_name\", \"path\": \"$file_path\", \"action\": \"detected\"}"
 
   echo "$log_entry" >> "$LOG_DIR/detection-log.jsonl"

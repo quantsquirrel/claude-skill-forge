@@ -46,8 +46,10 @@ calc_stddev() {
 
     local sum_sq_diff=0
     for score in "$@"; do
-        local diff=$(echo "$score - $mean" | bc -l)
-        local sq_diff=$(echo "$diff * $diff" | bc -l)
+        local diff
+        diff=$(echo "$score - $mean" | bc -l)
+        local sq_diff
+        sq_diff=$(echo "$diff * $diff" | bc -l)
         sum_sq_diff=$(echo "$sum_sq_diff + $sq_diff" | bc -l)
     done
 
@@ -80,14 +82,18 @@ calc_ci() {
     esac
 
     # 표준오차 (Standard Error)
-    local se=$(echo "scale=4; $stddev / sqrt($n)" | bc -l)
+    local se
+    se=$(echo "scale=4; $stddev / sqrt($n)" | bc -l)
 
     # 오차 범위 (Margin of Error)
-    local margin=$(echo "scale=2; $t_value * $se" | bc -l)
+    local margin
+    margin=$(echo "scale=2; $t_value * $se" | bc -l)
 
     # 신뢰구간 [lower, upper]
-    local lower=$(echo "scale=2; $mean - $margin" | bc -l)
-    local upper=$(echo "scale=2; $mean + $margin" | bc -l)
+    local lower
+    lower=$(echo "scale=2; $mean - $margin" | bc -l)
+    local upper
+    upper=$(echo "scale=2; $mean + $margin" | bc -l)
 
     echo "$lower $upper"
 }
@@ -127,8 +133,10 @@ estimate_ci_width() {
         *) t_value=2.0 ;;
     esac
 
-    local se=$(echo "scale=4; $stddev / sqrt($n)" | bc -l)
-    local width=$(echo "scale=2; 2 * $t_value * $se" | bc -l)
+    local se
+    se=$(echo "scale=4; $stddev / sqrt($n)" | bc -l)
+    local width
+    width=$(echo "scale=2; 2 * $t_value * $se" | bc -l)
 
     echo "$width"
 }
@@ -158,12 +166,16 @@ ci_separated() {
 # Output: JSON string
 generate_baseline_json() {
     local scores=("$@")
-    local scores_json=$(printf '%s,' "${scores[@]}" | sed 's/,$//')
+    local scores_json
+    scores_json=$(printf '%s,' "${scores[@]}" | sed 's/,$//')
 
-    local mean=$(calc_mean "${scores[@]}")
-    local stddev=$(calc_stddev "$mean" "${scores[@]}")
+    local mean
+    mean=$(calc_mean "${scores[@]}")
+    local stddev
+    stddev=$(calc_stddev "$mean" "${scores[@]}")
     local n=${#scores[@]}
-    local ci=($(calc_ci "$mean" "$stddev" "$n"))
+    local ci
+    mapfile -t ci < <(calc_ci "$mean" "$stddev" "$n")
 
     cat <<EOF
 {
@@ -192,16 +204,24 @@ generate_improvement_report() {
         return 1
     fi
 
-    local prev_mean=$(echo "$prev_json" | jq -r '.mean')
-    local prev_ci_lower=$(echo "$prev_json" | jq -r '.ci[0]')
-    local prev_ci_upper=$(echo "$prev_json" | jq -r '.ci[1]')
+    local prev_mean
+    prev_mean=$(echo "$prev_json" | jq -r '.mean')
+    local prev_ci_lower
+    prev_ci_lower=$(echo "$prev_json" | jq -r '.ci[0]')
+    local prev_ci_upper
+    prev_ci_upper=$(echo "$prev_json" | jq -r '.ci[1]')
 
-    local curr_mean=$(echo "$curr_json" | jq -r '.mean')
-    local curr_ci_lower=$(echo "$curr_json" | jq -r '.ci[0]')
-    local curr_ci_upper=$(echo "$curr_json" | jq -r '.ci[1]')
+    local curr_mean
+    curr_mean=$(echo "$curr_json" | jq -r '.mean')
+    local curr_ci_lower
+    curr_ci_lower=$(echo "$curr_json" | jq -r '.ci[0]')
+    local curr_ci_upper
+    curr_ci_upper=$(echo "$curr_json" | jq -r '.ci[1]')
 
-    local delta=$(echo "scale=2; $curr_mean - $prev_mean" | bc -l)
-    local delta_pct=$(echo "scale=2; ($delta / $prev_mean) * 100" | bc -l)
+    local delta
+    delta=$(echo "scale=2; $curr_mean - $prev_mean" | bc -l)
+    local delta_pct
+    delta_pct=$(echo "scale=2; ($delta / $prev_mean) * 100" | bc -l)
 
     echo "=== 평가 결과 비교 ==="
     echo ""
@@ -248,7 +268,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     echo "StdDev: $stddev"
 
     # 신뢰구간 계산
-    ci=($(calc_ci "$mean" "$stddev" 3))
+    mapfile -t ci < <(calc_ci "$mean" "$stddev" 3)
     echo "95% CI: [${ci[0]}, ${ci[1]}]"
     echo ""
 
